@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h6 class="fs-14 fw-400 text-muted my-3"> {{UserType[result?.role]}} </h6>
+    </div>
+    <div class="col-md-4">
+      <div class="profile-img mb-3">
+        <img [src]="result?.image|image" alt="">
+      </div>
+      <div class="text-center">
+        <label for="input" class="">Address</label>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">Street</label>
+        <input type="text" class="form-control" [value]="result?.address?.street" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">City</label>
+        <input type="text" class="form-control" [value]="result?.address?.city" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">State, Region or Province</label>
+        <input type="text" class="form-control" [value]="result?.address?.state" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">Postcode</label>
+        <input type="text" class="form-control" [value]="result?.address?.postCode" [readOnly]=true>
+      </div>
+
+      <div class="form-group">
+        <label for="input" class="">Country</label>
+        <img [src]="result?.address?.country | countryImage: 32" class="ml-3">
+        <span class="b">{{result?.address?.country |country}}</span>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <h2 class="fw-500 my-3"> {{result |name}} </h2>
+      <div class="form-group">
+        <label for="input" class="">Contact</label>
+        <input type="text" class="form-control" [value]="result?.contact" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">Email Address</label>
+        <input type="text" class="form-control" [value]="result?.email" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">Gender</label>
+        <input type="text" class="form-control" [value]="result?.gender|gender" [readOnly]=true>
+      </div>
+      <div class="form-group">
+        <label for="input" class="">Date of Birth</label>
+        <input type="text" class="form-control" [value]="result?.dob|date" [readOnly]=true>
+      </div>
+
+    </div>
+  </div>
+</div>

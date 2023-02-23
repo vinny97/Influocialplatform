@@ -1,0 +1,92 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Proposal Submission</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <!-- Motivation -->
+      <div class="col-md-10 mb-4">
+        <h6 class="text-blue2">Motivation</h6>
+        <textarea
+          cols="30"
+          rows="10"
+          class="w-100 border-0 rounded p-3 grey"
+          disabled
+        >
+            {{ motivation }}
+          </textarea
+        >
+      </div>
+
+      <!-- Fee -->
+      <div class="col-md-10">
+        <h6 class="text-blue2">Fee</h6>
+        <p class="fee border-1 p-3 grey">
+          {{ fee | currency }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #published let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Proposal Submission</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <!-- Image -->
+      <div class="col-md-10 mb-4">
+        <h6 class="text-center text-blue2">Image</h6>
+        <img [src]="contentPost | image" alt="" height="250px " />
+      </div>
+
+      <!-- Fee -->
+      <div class="col-md-5">
+        <h6 class="text-center text-blue2">Caption</h6>
+        <h6 class="text-center text-blue2">{{ caption }}</h6>
+      </div>
+
+      <!-- Submit Button -->
+      <!-- <div class="col-md-12 my-4 text-center">
+          <button class="btn btn-green green-shadow px-5" type="submit">Submit</button>
+        </div> -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

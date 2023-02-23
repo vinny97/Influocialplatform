@@ -1,0 +1,32 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Create Group</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="form" (ngSubmit)="onAddGroup()" class="form mb-md-4 mb-2">
+      <div class="form-row">
+        <div class="col-12 mb-3">
+          <label class="form-label">Group Name</label>
+          <input type="text" class="form-control" formControlName="title" name="title" placeholder="Group Name">
+          <errors [control]="f.title" [isSubmit]="isSubmit"></errors>
+        </div>
+        <div class="col-12 mb-3">
+          <label class="form-label">Group Description</label>
+          <textarea formControlName='description' placeholder="describe your group" name="" id="" cols="30" rows="3"
+            class="w-100 border-0 rounded p-3">
+        </textarea>
+          <errors [control]="f.description" [isSubmit]="isSubmit"></errors>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn highlighted" (click)="onAddGroup()">Submit</button>
+
+  </div>
+</ng-template>

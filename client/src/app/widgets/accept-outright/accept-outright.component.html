@@ -1,0 +1,38 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Proposal Outright</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6 class="text-center text-blue2">
+      Outright Fee:{{ proposal?.outrightFee | currency }}
+    </h6>
+    <app-content-view *ngIf="proposal" [result]="proposal"></app-content-view>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+    <button type="button" class="btn btn-danger" (click)="update(4)">
+      Reject
+    </button>
+    <button type="button" class="btn btn highlighted" (click)="update(3)">
+      Accept outright
+    </button>
+  </div>
+</ng-template>
+<app-paypal
+  [proposalID]="this.proposalID"
+  (payPalResponse)="updateOutRightStatus(3)"
+></app-paypal>

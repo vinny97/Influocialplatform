@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <app-user-list-filter
+        (onSearchClicked)="onSearchClick($event)"
+        (onFilterChange)="onTypeClick($event)"
+      ></app-user-list-filter>
+      <no-content
+        *ngIf="!isLoader && (!result || result.docs.length === 0); else data"
+        [label]="'No Users here!'"
+      >
+      </no-content>
+      <ng-template #data>
+        <!-- Implement Search here -->
+
+        <h3 class="fs-25 fw-500 text-blue py-3">{{ roles[role] }} users</h3>
+        <app-user-list-table [result]="result"></app-user-list-table>
+      </ng-template>
+      <app-loader *ngIf="isLoader"></app-loader>
+    </div>
+  </div>
+  <!-- pagination -->
+  <app-pagination
+    *ngIf="result?.totalDocs > limit"
+    (onPageChange)="onClickPage($event)"
+    [page]="this.page"
+    [limit]="this.limit"
+    [totalDocs]="result?.totalDocs"
+  >
+  </app-pagination>
+</div>

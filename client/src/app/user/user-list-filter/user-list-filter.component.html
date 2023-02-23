@@ -1,0 +1,29 @@
+<ul class="list">
+  <li>
+    <a href="javascript:void(0)" (click)="onRoleClick(2)" [ngClass]="{ active: role === 2 }">
+      Influencer
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="onRoleClick(3)" [ngClass]="{ active: role === 3 }">
+      Brand
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0)" (click)="onRoleClick(4)" [ngClass]="{ active: role === 4 }">
+      Agency
+    </a>
+  </li>
+  <li class="ml-auto">
+
+    <div class="input-group">
+      <div class="form-outline">
+        <input type="search" placeholder="Search by name" (input)="isEmpty()" [(ngModel)]="searchQuery"
+          class="form-control" />
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onSearchClick()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </li>
+</ul>

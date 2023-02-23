@@ -1,0 +1,21 @@
+.highlighted {
+    background-color:  #62EBA8;
+  }
+
+  .text-mute{
+    color: #535875;
+  }
+  textarea::placeholder{
+      color: #46A8AE;
+  }
+
+
+  input{
+    border: 0;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+  }
+  input:focus{
+    outline: none;
+  }
