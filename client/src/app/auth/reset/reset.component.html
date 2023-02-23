@@ -1,0 +1,81 @@
+<div class="auth">
+  <div class="container">
+    <div class="row pt-100">
+      <div class="col-md-6">
+        <h1
+          class="
+            font-weight-bold
+            text-center text-dark text-align-center
+            d-block d-md-none
+            mb-4
+          "
+        >
+          Reset Password
+        </h1>
+        <div class="row">
+          <div class="col-lg-9 col-md-10">
+            <form
+              class="form mb-md-4 mb-2"
+              [formGroup]="form"
+              (ngSubmit)="onSubmit()"
+            >
+              <div
+                *ngIf="error == 1 || error == 2"
+                class="alert alert-danger"
+                role="alert"
+              >
+                {{ errorMessage }}
+              </div>
+              <div class="form-row">
+                <div class="col-12 mb-3">
+                  <label class="form-label">Password</label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    placeholder="Enter Password ..."
+                  />
+                  <errors [control]="f.password" [isSubmit]="isSubmit"></errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Confirm Password</label>
+                  <input
+                    type="password"
+                    formControlName="confirmPassword"
+                    class="form-control"
+                    placeholder="Confirm Password ..."
+                  />
+                  <errors [control]="f.confirmPassword" [isSubmit]="isSubmit"></errors>
+
+                </div>
+              </div>
+              <div class="form-row justify-content-center">
+                <div class="col-5 my-lg-3">
+                  <button
+                    [disabled]="isLoading"
+                    class="btn default-btn d-block dark-blue"
+                    type="submit"
+                  >
+                    {{ isLoading ? "Resetting Password" : "Reset Password" }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h1
+          class="
+            font-weight-bold
+            text-center text-dark text-align-center
+            d-md-block d-none
+          "
+        >
+          Reset Password
+        </h1>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="name"><span>my</span>name</div> -->
+</div>

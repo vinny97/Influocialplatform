@@ -1,0 +1,27 @@
+.profile-img{
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.profile-img img{
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+label{
+  font-weight: 500;
+}
+input{
+  border: 0 !important;
+  border-bottom: 1px solid black !important;
+  border-radius: 0;
+  background-color: transparent;
+}
+input:focus{
+  border: 0 !important;
+  border-bottom: 1px solid black !important;
+  background-color: transparent;
+  outline: 0 !important;
+  box-shadow: none !important;
+}

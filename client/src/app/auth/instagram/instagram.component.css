@@ -1,0 +1,42 @@
+sry {
+  color: #fff;
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.2);
+  width: 205px;
+  height: 48px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #fff;
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: unset;
+}
+.icon {
+  position: absolute;
+  left: 13px;
+  top: 12px;
+}
+.btn-outline-secondary {
+  width: 205px;
+  height: 48px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.btn-outline-secondary:hover {
+  background-color: black;
+  color: white;
+}
+.requirements {
+  margin-left: 18px;
+}
+.requirements li {
+  list-style-type: square !important;
+  line-height: 1.6rem;
+}
+.multiple-account-note {
+  color: red;
+  margin-top: 40px;
+}

@@ -1,0 +1,41 @@
+<div class="position-relative">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card border-0">
+                <div class="card-body">
+                    <full-calendar [options]="calendarOptions"></full-calendar>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-circle" (click)="openLg(calender)"><img
+                src="assets/plus.png"></button>
+</div>
+
+<ng-template #calender let-modal>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-0">
+                    <!-- <div class="header">
+                        <h1>Request Shedule</h1>
+                        <span><i class="fas fa-cross"></i></span>>
+                    </div> -->
+                    <div class="modal-header my-0">
+                        <span type="button" class="close ml-auto" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true"><i class="fas fa-times text-black fs-25"></i></span>
+                        </span>
+                    </div>
+                    <h3 class="fw-600 fs-25 text-blue text-center">Request Schedule</h3>
+
+                    <div class="row justify-content-center">
+                        <button type="button" class="btn btn-golden-modal shadow-1">Schedule</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

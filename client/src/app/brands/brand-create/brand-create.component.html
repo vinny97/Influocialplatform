@@ -1,0 +1,37 @@
+<ng-template #createBrand>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create Brand</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <div class="form-group">
+        <input id="name" class="form-control" placeholder="Name" formControlName="name" name="name">
+        <errors [control]="f.name" [isSubmit]="isSubmit"></errors>
+      </div>
+      <upload-file (upload)="onUploadImage($event)" #uploader></upload-file>
+      <div (click)="uploader.click()" class="uploader">
+        <label for="file-upload" id="file-drag">
+          <img *ngIf="f.image.value" id="file-image" [src]="f.image.value | image" alt="Preview" class="hidden">
+          <div id="start" *ngIf="!f.image.value">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <div></div>
+            <div id="notimage" class="hidden">Please select an image</div>
+            <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+          </div>
+          <div *ngIf="f.image.value" id="response" class="hidden">
+            <div id="messages"></div>
+            <progress class="progress" id="file-progress" [value]="uploader.uploader.progress">
+              <span>0</span>%
+            </progress>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Save</button>
+    </div>
+  </form>
+</ng-template>

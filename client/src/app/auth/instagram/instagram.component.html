@@ -1,0 +1,86 @@
+<div class="container" *ngIf="!hideBtnsAndInstructions">
+  <div class="row mt-5 pt-5">
+    <div class="col-md-6 offset-3">
+      <div class="row">
+        <button
+          class="btn btn-secondary"
+          (click)="loginWithFacebook()"
+          *ngIf="!hideBtnsAndInstructions"
+        >
+          Login with facebook
+        </button>
+      </div>
+      <div class="row mt-3">
+        <h2>About Influocial</h2>
+        <p class="w-75">
+          Influocial’s prime aim is to minimize the gap between Instagram
+          influencers and brands that are looking to promote their products. You
+          are just a few clicks away from becoming Influocial user. Read the
+          requirements below to unveil all the key features of Influocial.
+        </p>
+      </div>
+      <div class="row mt-3">
+        <h2>Requirements</h2>
+        <ul class="requirements">
+          <li>Facebook authentication with Influocial.</li>
+          <li>A Facebook page linked with the authenticated account.</li>
+          <li>
+            An Instagram business/creator account connected with the Facebook
+            page.
+          </li>
+          <li>
+            You cannot trade with brands/agencies through Instagram personal
+            account.
+          </li>
+        </ul>
+      </div>
+      <div class="row mt-2">
+        <button
+          class="btn btn-outline-secondary"
+          [routerLink]="['/discover']"
+          routerLinkActive="router-link-active"
+          *ngIf="!hideBtnsAndInstructions"
+        >
+          Skip for now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="hideBtnsAndInstructions">
+  <!-- card -->
+  <p *ngIf="pageProfileInfo.length != 0" class="multiple-account-note">
+    Your Facebook account might have association with several Facebook Pages and
+    those pages might be linked to Instagram Business/Creator accounts, but you
+    can only choose one page to trade with other Influocial users.
+  </p>
+  <div *ngIf="pageProfileInfo.length != 0">
+    <div class="container mt-5 mb-5">
+      <div class="row g-2">
+        <div class="col-md-3" *ngFor="let profile of pageProfileInfo">
+          <div class="card p-2 py-3 text-center">
+            <div class="img mb-2">
+              <img
+                [src]="profile?.profile_picture_url"
+                width="70"
+                class="rounded-circle"
+              />
+            </div>
+            <p>Biography: {{ profile?.biography }}</p>
+            <p>Username: @{{ profile?.username }}</p>
+            <p>Followers: {{ profile?.followers_count }}</p>
+            <p>Following: {{ profile?.follows_count }}</p>
+            <button
+              class="btn btn-outline-primary"
+              (click)="proceedWithSelectedPage(profile)"
+            >
+              Select
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="error" style="color: red" *ngIf="error !== null">{{ error }}</p>
+</div>

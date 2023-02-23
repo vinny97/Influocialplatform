@@ -1,0 +1,131 @@
+<div class="auth">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 pt-100 d-md-block d-none">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Compain.</p>
+              <p>ShoutOut.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Another nice text
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC1.png" alt="Random second slide" />
+            </div>
+            <div
+              class="carousel-caption"
+              style="text-align: left; line-height: 2"
+            >
+              <p>
+                Learn how to do some magics. <br />
+                It's super easy
+              </p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Campaign.</p>
+              <p>Shout-out.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="col-md-5 pt-50">
+        <h2
+          class="font-weight-bold text-center text-dark text-align-center mb-4"
+        >
+          Enter Verification Code!
+        </h2>
+
+        <div class="row">
+          <div class="col-lg-11 col-md-12">
+            <div class="form mb-md-4">
+              <div class="form-row pt-5">
+                <div class="col-12 text-center">
+                  <span class="text-danger" *ngIf="error && error !== ''">{{
+                    error
+                  }}</span>
+                  <label class="form-label"
+                    >OTP has been sent to you on your email.</label
+                  >
+                  <label class="form-label">Please enter it below.</label>
+                  <ng-otp-input
+                    (onInputChange)="onOtpChange($event)"
+                    [config]="{ length: 4, allowNumbersOnly: true }"
+                  ></ng-otp-input>
+                  <div class="text-right p-0">
+                    <span class="font-smaller"
+                      >Didn't get the code?
+                      <button
+                        class="forgot btn btn-link"
+                        [ngClass]="{ 'disabled-link': isResendLoading }"
+                        (click)="onResendClick()"
+                        href="javascript:void(0)"
+                      >
+                        Resend OTP
+                      </button></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-row justify-content-center">
+                <div class="col-5 my-lg-2">
+                  <button
+                    class="btn default-btn d-block dark-blue"
+                    (click)="onSubmit()"
+                    type="submit"
+                  >
+                    Verify
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mb-lg-4">
+              Already have an account?
+              <a href="javascript:void(0)" class="forgot" routerLink="/auth"
+                >Sign in</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="name"><span>my</span>name</div> -->
+</div>

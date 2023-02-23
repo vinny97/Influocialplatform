@@ -1,0 +1,206 @@
+<div class="auth">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pt-100 d-md-block d-none">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <h1 class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              ">
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Campaign.</p>
+              <p>Shout-out.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1 class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              ">
+              Another nice text
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC1.png" alt="Random second slide" />
+            </div>
+            <div class="carousel-caption" style="text-align: left; line-height: 2">
+              <p>
+                Learn how to do some magics. <br />
+                It's super easy
+              </p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1 class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              ">
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Campaign.</p>
+              <p>Shout-out.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="col-md-6 pt-50">
+        <h2 class="font-weight-bold text-center text-dark text-align-center mb-4">
+          Complete Your Profile
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-11 col-md-12">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form mb-md-4 mb-2">
+              <div *ngIf="step === 1" class="form-row">
+                <div *ngIf="user.role === 2" class="col-12">
+                  <upload-file #upload (upload)="onImageUpload($event)"></upload-file>
+                  <div class="avatar-upload">
+                    <div class="avatar-edit" (click)="upload.click()">
+                      <span></span>
+                      <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                      <img id="imagePreview" [src]="f.image?.value | image" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="step === 1" class="form-row">
+                <div *ngIf="this.user.role !== 2" class="col-12 mb-3">
+                  <div class="account-type">
+                    <div>
+                      <input type="radio" [value]="3" formControlName="role" id="Brand" class="account-type-radio" />
+                      <label for="Brand" class="ripple-effect-dark">
+                        Brand</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="Agency" [value]="4" formControlName="role" class="account-type-radio" />
+                      <label for="Agency" class="ripple-effect-dark">
+                        Agency</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label class="form-label">Contact Number</label>
+                  <input type="text" class="form-control" placeholder="" appNumericOnly formControlName="contact" />
+                  <errors [control]="f.contact" [isSubmit]="isSubmit1">
+                  </errors>
+                </div>
+                <div class="col-12 mb-3" *ngIf="user.role === 2">
+                  <label class="form-label">Gender</label>
+                  <ng-select [items]="genders" class="profile" bindLabel="name" bindValue="id"
+                    placeholder="Select Gender" formControlName="gender">
+                  </ng-select>
+                  <errors [control]="f.gender" [isSubmit]="isSubmit1"> </errors>
+                </div>
+                <div class="col-12 mb-3" *ngIf="user.role === 2">
+                  <label class="form-label">Date of Birth</label>
+                  <div class="input-group">
+                    <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [minDate]="minDate"
+                      [maxDate]="maxDate" formControlName="dob" ngbDatepicker #d="ngbDatepicker" />
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary fas fa-calendar" (click)="d.toggle()"
+                        type="button"></button>
+                    </div>
+                  </div>
+                  <errors [control]="f.dob" [isSubmit]="isSubmit1"> </errors>
+                </div>
+
+                <div *ngIf="user.role !== 2" class="col-12 mb-3">
+                  <label class="form-label">Company Name</label>
+                  <input type="text" class="form-control" placeholder="Brand/Agency name"
+                    formControlName="companyName" />
+                  <errors [control]="f.companyName" [isSubmit]="isSubmit1">
+                  </errors>
+                </div>
+
+                <div *ngIf="user.role !== 2" class="col-12 mb-3">
+                  <label class="form-label">Company Size</label>
+                  <ng-select [items]="company_size" class="profile" placeholder="Select Brand/Agency size"
+                    bindLabel="name" bindValue="id" formControlName="companySize">
+                  </ng-select>
+                  <errors [control]="f.companySize" [isSubmit]="isSubmit1">
+                  </errors>
+                </div>
+              </div>
+              <div *ngIf="step === 2" [formGroup]="f.address" class="form-row">
+                <div class="col-12 mb-3">
+                  <label class="form-label">Post code</label>
+                  <input type="text" class="form-control" placeholder="" formControlName="postCode" />
+                  <errors [control]="address.postCode" [isSubmit]="isSubmit">
+                  </errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Street</label>
+                  <input type="text" class="form-control" placeholder="" formControlName="street" />
+                  <errors [control]="address.street" [isSubmit]="isSubmit">
+                  </errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">City</label>
+                  <input type="text" class="form-control" placeholder="" formControlName="city" />
+                  <errors [control]="address.city" [isSubmit]="isSubmit">
+                  </errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">State</label>
+                  <input type="text" class="form-control" placeholder="" formControlName="state" />
+                  <errors [control]="address.state" [isSubmit]="isSubmit">
+                  </errors>
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label class="form-label">Country</label>
+                  <ng-select [items]="countries" [bindValue]="'code'" class="step3-sel" bindLabel="name"
+                    formControlName="country">
+                    <!-- <ng-template ng-label-tmp ng-option-tmp let-item="item">
+                      <img [src]="item.code | countryImage: 32" />
+                      <span class="b">{{ item.name }}</span>
+                    </ng-template> -->
+                    <ng-template ng-label-tmp ng-option-tmp let-item="item">
+                      <img height="25" width="25" class="mr-2" [src]="item.avatar" />
+                      <b>{{item.name}}</b>
+
+                    </ng-template>
+                  </ng-select>
+
+                  <errors [control]="address.country" [isSubmit]="isSubmit">
+                  </errors>
+                </div>
+              </div>
+              <div *ngIf="step === 1" class="form-row justify-content-center">
+                <div class="col-5 my-lg-2 text-center">
+                  <button (click)="onNextClick()" class="btn default-btn dark-blue" type="button">
+                    Next
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="step === 2" class="form-row justify-content-center">
+                <div class="col-5 my-lg-2 text-center">
+                  <button class="btn default-btn dark-blue" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

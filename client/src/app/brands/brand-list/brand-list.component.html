@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="fs-25 fw-500 text-blue py-3 mb-0">Brands</h3>
+    <div *ngIf="!this.isMeasure">
+      <a href="javascript:void(0)" class="btn btn-primary text-white " (click)="onCreateClick()">Create brand</a>
+
+    </div>
+
+  </div>
+  <div *ngIf="!isLoader && result.docs.length > 0" class="row justify-content-between">
+    <div class="col-lg-6 mb-4 relative" *ngFor="let brand of result.docs">
+      <div class="left-top" *ngIf="!this.isMeasure">
+        <a href="javascript:void(0)" (click)="onEditClick(brand)" class="pr-2"> <i class="fa fa-pencil"></i> </a>
+        <a href="javascript:void(0)" (click)="onDeleteClick(brand)" class="pr-2"> <i class="fas fa-trash"></i> </a>
+      </div>
+      <div class="card2 shadow text-center">
+        <h3 class="fw-500 fs-25 text-blue pt-3 mb-0">{{brand.name}}</h3>
+        <div class="img-div">
+          <img [src]="brand.image | image">
+        </div>
+        <div class="pb-2">
+          <button class="btn btn-green mb-3 green-shadow" (click)="onViewCampaignsNavigation(brand?._id)">View
+            Compaigns</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <app-loader *ngIf="isLoader"></app-loader>
+  <no-content *ngIf="!isLoader && (!result ||  result.docs.length <= 0)" [label]="'You have no brands created yet!'">
+  </no-content>
+</div>
+
+<!-- Create/ Edit Brand Modal -->
+<app-brand-create (onBrandChanged)="brandsUpdated($event)"></app-brand-create>

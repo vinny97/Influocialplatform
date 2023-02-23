@@ -1,0 +1,373 @@
+.auth{
+    min-height: 100vh;
+    height: 100vh;
+    background: url(/assets/Register.png);
+    width: 100%;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  label{
+    color: black;
+    font-weight: 600;
+  }
+  .form-control {
+    background: #fff;
+    height: 52px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+  }
+  .default-btn{
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 37%);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .dark-blue{
+    background: #525AC9;
+  }
+  .light-blue{
+    background: #3E87CF;
+  }
+  .dark-red{
+    background: #CF3E3E;
+  }
+  .forgot{
+    color: #1959B8;
+  }
+  .pt-100{
+    padding-top: 100px;
+  }
+  .pt-50{
+    padding-top: 50px;
+  }
+  .wrapper{
+    height: 400px;
+    width: 400px;
+    margin-left: auto;
+  }
+  .wrapper img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  ::ng-deep .carousel:focus{
+    outline: none;
+  }
+  ::ng-deep .carousel-indicators {
+    right: 50%;
+    bottom: 20%;
+
+  }
+  ::ng-deep .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    opacity: 1;
+    background-color: #A1A1A1;
+  }
+  ::ng-deep .carousel-indicators li.active {
+    background-color: #29C4A4;
+  }
+  ::ng-deep .carousel-caption {
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    top: 15%;
+    left: 0%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #393939;
+    text-align: center;
+  }
+  ::ng-deep .carousel-caption p{
+    font-size: 16px;
+    color: #393939;
+
+  }
+  .name{
+    color: #393939;
+    font-size: 24px;
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+
+  }
+  .name span{
+    color: #40DF34;
+    font-size: 24px;
+
+  }
+   /* ngb-carousel .wrapper {
+     position: relative;
+     height: 0;
+     padding-top: 55%;
+   }
+
+   ngb-carousel .wrapper>img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     bottom: 0;
+     right: 0;
+   } */
+  @media(max-width:768px){
+      .auth{
+        min-height: 100vh;
+        height: 100vh;
+        background: white;
+        width: 100%;
+      }
+      .pt-100{
+        padding-top: 50px;
+      }
+      .name{
+        display: none;
+      }
+  }
+
+
+  /* uploade */
+  .avatar-upload {
+    position: relative;
+    max-width: 160px;
+    margin: 0px auto;
+ }
+  .avatar-upload .avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+ }
+  .avatar-upload .avatar-edit span {
+    display: none;
+ }
+  .avatar-upload .avatar-edit span + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+ }
+  .avatar-upload .avatar-edit span + label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+ }
+  .avatar-upload .avatar-edit span + label:after {
+    content: "\f040";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+ }
+  .avatar-upload .avatar-preview {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+ }
+  .avatar-upload .avatar-preview > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+ }
+
+
+ ::ng-deep .ng-select{
+  height: 52px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0px;
+  border-radius: 15px;
+  color: black;
+  padding: 0px;
+  border-radius: 10px;
+
+}
+
+
+::ng-deep .profile.ng-select.ng-select-single .ng-select-container .ng-value-container{
+  height: 52px;
+  border-radius: 15px;
+}
+::ng-deep .profile.ng-select.ng-select-single .ng-select-container {
+  height: 52px;
+}
+
+::ng-deep .profile.ng-select .ng-select-container {
+  min-height: 52px;
+  border-radius: 10px;
+}
+
+.account-type {
+  display: flex;
+  width: calc(100% + 20px);
+  margin: 0 0 20px;
+  margin-top: 30px;
+
+}
+.account-type div {
+  flex: 1;
+  margin-right: 20px;
+  background: azure;
+  text-align: center;
+  border-radius: 9px;
+}
+.account-type div {
+  flex: 1;
+  margin-right: 20px;
+  background: azure;
+  text-align: center;
+  border-radius: 9px;
+}
+.account-type input.account-type-radio:empty {
+  display: none;
+}
+input[type=radio] {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  box-shadow: none;
+  line-height: 48px;
+  outline: 0;
+  font-size: 16px;
+  color: grey;
+  margin: 0 0 16px;
+  max-width: 100%;
+  background-color: #fff;
+  font-weight: 500;
+  opacity: 1;
+  border-radius: 4px;
+  border: none;
+}
+.account-type input.account-type-radio:checked~label {
+  color: #fff;
+  background-color: #525AC9;
+}
+
+.account-type input.account-type-radio:empty~label {
+  position: relative;
+  float: left;
+  text-align: center;
+  padding: 10px 10px 11px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border-radius: 4px;
+  transition: .4s;
+  height: 48px;
+  line-height: 28px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.account-type label {
+  border-radius: 3px;
+  border: none;
+  background-color: #f2f2f2;
+  width: 100%;
+}
+.account-type input.account-type-radio:empty~label:after, .account-type input.account-type-radio:empty~label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 4px;
+  font-size: 22px;
+  background: 0 0;
+  z-index: 100;
+  opacity: 0;
+}
+
+.account-type input.account-type-radio:empty~label:after, .account-type input.account-type-radio:empty~label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 4px;
+  font-size: 22px;
+  background: 0 0;
+  z-index: 100;
+  opacity: 0;
+}
+
+
+
+input, input[type=email], input[type=number], input[type=password], input[type=text], select, textarea {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  outline: 0;
+  font-size: 16px;
+  color: grey;
+  margin: 0 0 16px;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  background-color: #fff;
+  font-weight: 500;
+  opacity: 1;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 12%);
+}
+
+
+
+
+
+
+
+
+::ng-deep .step3-sel.ng-select.ng-select-single .ng-select-container .ng-value-container{
+  height: 52px;
+  border-radius: 15px;
+}
+::ng-deep .step3-sel.ng-select.ng-select-single .ng-select-container {
+  height: 52px;
+}
+
+::ng-deep .step3-sel.ng-select .ng-select-container {
+  min-height: 52px;
+  border-radius: 10px;
+}
+
+
+.select-with-icon{
+  position: relative;
+}
+.select-with-icon img{
+  position: absolute;
+  top: 25px;
+  right: 35px;
+}

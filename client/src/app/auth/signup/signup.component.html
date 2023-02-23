@@ -1,0 +1,167 @@
+<div class="auth">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pt-100 d-md-block d-none">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Campaign.</p>
+              <p>Shout-out.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Another nice text
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC1.png" alt="Random second slide" />
+            </div>
+            <div
+              class="carousel-caption"
+              style="text-align: left; line-height: 2"
+            >
+              <p>
+                Learn how to do some magics. <br />
+                It's super easy
+              </p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <h1
+              class="
+                font-weight-bold
+                text-dark text-align-center
+                d-md-block d-none
+              "
+            >
+              Automate It All
+            </h1>
+            <div class="wrapper">
+              <img src="assets/PIC.png" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+              <p>Campaign.</p>
+              <p>Shout-out.</p>
+              <p>Brand.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="col-md-6 pt-50">
+        <h2
+          class="font-weight-bold text-center text-dark text-align-center mb-4"
+        >
+          Join now as
+          {{ role == UserType.influencer ? "an Influencer" : "a Brand" }}. It's
+          free :)
+        </h2>
+        <div class="row">
+          <div class="col-lg-11 col-md-12">
+            <form
+              [formGroup]="form"
+              (ngSubmit)="onSubmit()"
+              class="form mb-md-4 mb-2"
+            >
+              <div class="form-row">
+                <div class="col-12 mb-3">
+                  <label class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder=""
+                  />
+                  <errors
+                    [control]="f.firstName"
+                    [isSubmit]="isSubmit"
+                  ></errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="lastName"
+                    name="lastName"
+                    placeholder=""
+                  />
+                  <errors [control]="f.lastName" [isSubmit]="isSubmit"></errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    formControlName="email"
+                    name="email"
+                    placeholder=""
+                  />
+                  <errors [control]="f.email" [isSubmit]="isSubmit"></errors>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                    name="password"
+                    placeholder=""
+                  />
+                  <errors [control]="f.password" [isSubmit]="isSubmit"></errors>
+                  <div class="text-right mt-2">
+                    <a
+                      href="javascript:void(0)"
+                      (click)="onRoleClick()"
+                      class="forgot"
+                      >Register as
+                      {{
+                        role == UserType.influencer ? "Brand" : "Influencer"
+                      }}?</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-row justify-content-center">
+                <div class="col-5 my-lg-2">
+                  <button
+                    class="btn default-btn d-block dark-blue"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="text-center mb-lg-4">
+              Already have an account?
+              <a href="javascript:void(0)" class="forgot" routerLink="/auth"
+                >Sign in</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="name"><span>my</span>name</div> -->
+</div>
