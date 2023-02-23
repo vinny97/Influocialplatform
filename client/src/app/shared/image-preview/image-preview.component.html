@@ -1,0 +1,34 @@
+<div class="avatar-upload">
+  <div class="avatar-edit">
+    <div>
+      <img
+        src="assets/cancel.png"
+        height="25px"
+        *ngIf="imageURL && isUploaded"
+        (click)="removePicture()"
+        class="mb-2"
+      />
+      <img
+        [src]="imageURL"
+        width="100%"
+        height="100%"
+        *ngIf="imageURL && isUploaded"
+      />
+    </div>
+    <input
+      type="file"
+      id="imageUpload"
+      accept=".png, .jpg, .jpeg"
+      class="d-none"
+      #fileInput
+      (click)="$event.target.value = null"
+      (change)="uploadFile($event)"
+    />
+    <img
+      src="assets/added.png"
+      [style.height.px]="uploadButtonHeight"
+      (click)="fileInput.click()"
+      *ngIf="!isUploaded"
+    />
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<ng-template #content let-modal>
+  <div class="card mb-0">
+    <div class="card-header border-bottom">
+      <h4 class="mb-2 m-0">Select Payment Method</h4>
+    </div>
+    <div class="card-body pt-4">
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+  </div>
+</ng-template>

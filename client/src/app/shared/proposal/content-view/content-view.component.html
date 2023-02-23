@@ -1,0 +1,14 @@
+<div class="container">
+  <app-image-carousal
+    *ngIf="result?.contentPost"
+    [images]="result?.contentPost"
+  ></app-image-carousal>
+  <div class="row mt-4 justify-content-center">
+    <div class="col-md-6 mb-4">
+      <h6 class="fs-18 fw-700 text-blue text-center my-2">Caption</h6>
+      <textarea class="w-100 border-0 rounded p-3" cols="30" rows="10" readonly>
+ {{ result?.contentCaption }} </textarea
+      >
+    </div>
+  </div>
+</div>

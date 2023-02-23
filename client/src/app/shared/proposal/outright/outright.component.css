@@ -1,0 +1,11 @@
+.c-p{
+    cursor: pointer;
+}
+    
+.info-icon{
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    border-radius: 10px;
+    height: 23px;
+}

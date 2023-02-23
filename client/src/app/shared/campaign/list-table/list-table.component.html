@@ -1,0 +1,38 @@
+<div *ngIf="result && result.docs && result.docs.length > 0" class="table-responsive">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Campaigns</th>
+        <th scope="col">Name</th>
+        <th scope="col" *ngIf="this.isCreatedByVisible">Created By</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Budget</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cam of result?.docs" class="bg active">
+        <td>
+          <img [src]="cam.image | image" width="90">
+        </td>
+        <td class="text-blue">{{cam?.name}}</td>
+
+        <td *ngIf="this.isCreatedByVisible">
+          <img [src]="cam?.createdBy?.image | image" width="90">
+          <span class="text-blue">{{cam?.createdBy|name}}</span>
+        </td>
+        <td class="text-blue">{{cam.startDate | date : "MMM d"}}-{{addDays(cam.startDate,cam.duration) | date :
+          "MMM d"}}</td>
+        <td class="text-aqua fw-500">Active</td>
+        <td class="text-aqua fs-22 fw-700">{{cam.budget | currency}}</td>
+        <td>
+          <i class="fas fa-eye text-success mr-3" (click)='detail(cam?._id)'></i>
+          <i *ngIf="cam?.status === 2 || cam?.status ===5 || cam?.status === 3" class="fas fa-file-alt text-warning"
+            (click)="viewProposals(cam?._id)"></i>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

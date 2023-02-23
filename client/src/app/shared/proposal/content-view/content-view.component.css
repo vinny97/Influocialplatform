@@ -1,0 +1,29 @@
+textarea:focus{
+    outline: none ;
+  }
+  textarea{
+    resize: none;
+  }
+
+  input{
+    border: 0;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+  }
+  input:focus{
+    outline: none;
+  }
+
+  .card{
+    background:url(/../assets/pro3.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 0;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

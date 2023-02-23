@@ -1,0 +1,48 @@
+<div *ngIf="isView">
+  <div *ngIf="type === 2; else type1" class="user-name">
+    <h6>Social Channels</h6>
+    <div class="d-flex align-items-center">
+      <img src="assets/insta.png" height="30" class="mr-3" />
+      <div>
+        <h5 class="fs-16 fw-500 mb-0">@ {{ result?.username }}</h5>
+        <h6 class="fs-16 fw-500 mb-0">
+          {{ result?.followers_count | shortNumber }}
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <!-- rendering when used in list :list-brand-component: -->
+  <ng-template #type1>
+    <h6 class="text-blue fs-16 fw-500">
+      <img src="assets/insta.png" height="30" class="mr-3" /> @
+      {{ result?.username }}
+    </h6>
+    <div
+      class="
+        social
+        d-flex
+        align-items-center
+        justify-content-center
+        mb-lg-4 mb-3
+        px-3 px-lg-4
+      "
+    >
+      <div class="text-left">
+        <div>
+          <span class="text-mute">Followers:</span>
+          {{ result?.followers_count | shortNumber }}
+        </div>
+      </div>
+      <div class="ml-auto text-right">
+        <div>
+          <span class="text-mute">Posts: </span>
+          {{ result?.media_count | shortNumber }}
+        </div>
+        <!-- <div><span class="text-mute">Eng. Rate: </span> 9.2%</div> -->
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<app-loader *ngIf="isLoader"></app-loader>

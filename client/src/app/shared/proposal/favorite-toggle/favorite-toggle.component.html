@@ -1,0 +1,7 @@
+<app-loader *ngIf="isLoader"></app-loader>
+<div *ngIf="!isLoader">
+        <span *ngIf="!isFavorite" (click)='update()' class="px-lg-5 px-2"><i
+                        class="fas fa-heart fa-2x text-muted"></i></span>
+        <span *ngIf="isFavorite" (click)='update()' class="px-lg-5 px-2"><i
+                        class="fas fa-heart fa-2x text-danger"></i></span>
+</div>

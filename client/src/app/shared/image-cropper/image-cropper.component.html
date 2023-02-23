@@ -1,0 +1,57 @@
+<label class="custom-file-upload btn-orange">
+  <input type="file" (change)="fileChangeEvent($event)" class="hidden" />
+  Upload New Image
+</label>
+<br />
+<br />
+<div class="col-xs-1" align="center">
+  <image-cropper
+    [imageChangedEvent]="newImage ? imageChangedEvent : ''"
+    [maintainAspectRatio]="true"
+    [containWithinAspectRatio]="containWithinAspectRatio"
+    [aspectRatio]="4 / 4"
+    [resizeToWidth]="1080"
+    [cropperMinWidth]="128"
+    [onlyScaleDown]="true"
+    [canvasRotation]="canvasRotation"
+    [transform]="transform"
+    [alignImage]="'left'"
+    [roundCropper]="isRound"
+    [style.display]="showCropper ? null : 'none'"
+    format="jpg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady($event)"
+    (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+</div>
+
+<div class="row justify-content" style="padding: 40px">
+  <i
+    class="fas fa-undo"
+    [ngbTooltip]="['rotate-left']"
+    (click)="rotateLeft()"
+  ></i>
+  <i
+    class="fas fa-redo"
+    [ngbTooltip]="['rotate-right']"
+    (click)="rotateRight()"
+  ></i>
+  <i
+    class="fa fa-search-minus"
+    [ngbTooltip]="['zoom-out']"
+    (click)="zoomOut()"
+    aria-hidden="true"
+  ></i>
+  <i
+    class="fa fa-search-plus"
+    [ngbTooltip]="['zoom-in']"
+    (click)="zoomIn()"
+    aria-hidden="true"
+  ></i>
+  <!-- <i [ngClass]="containWithinAspectRatio?'fas fa-compress':'fas fa-expand'" (click)="toggleContainWithinAspectRatio()"></i> -->
+  <span class="ml-auto">
+    <button class="btn-orange" (click)="resetImage()">Reset image</button>
+    <button class="btn-orange" (click)="close()">Set</button>
+  </span>
+</div>

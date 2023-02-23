@@ -1,0 +1,194 @@
+<div *ngIf="!this.isLoader">
+  <h6 class="text-blue fs-20 fw-500 pl-lg-3">New Post</h6>
+  <div class="card px-3 pt-4">
+    <div [formGroup]="this.form">
+      <!-- <div [hidden]="!f.image.value" class="post-image mt-4">
+        <i class="far fa-times-circle" (click)="removePicture()"></i>
+        <!-- <img [src]="f.image.value" #imageCropper /> 
+      </div> -->
+
+      <!-- image cropper -->
+      <div [hidden]="!f.image.value" class="post-image mt-4">
+        <i class="far fa-times-circle" (click)="removePicture()"></i>
+        <!-- <img [src]="f.image.value" #imageCropper /> -->
+      </div>
+      <div
+        (click)="upload.click()"
+        *ngIf="!f.image.value"
+        class="card text-center"
+      >
+        <div class="" *ngIf="f.image.value === null">
+          <img src="assets/added.png" height="200" alt="" />
+        </div>
+      </div>
+      <div>
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [containWithinAspectRatio]="true"
+          [aspectRatio]="cropperAspectRatio"
+          [imageQuality]="100"
+          [onlyScaleDown]="true"
+          [cropperMinWidth]="1280"
+          [cropperMinHeight]="720"
+          [cropperMaxWidth]="1280"
+          [cropperMaxHeight]="1600"
+          [canvasRotation]="canvasRotation"
+          [transform]="transform"
+          [alignImage]="'left'"
+          [style.display]="showCropper ? null : 'none'"
+          format="jpg"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady($event)"
+          (loadImageFailed)="loadImageFailed()"
+          [imageBase64]="this.f.image.value"
+          style="max-height: 400px; max-width: 400px"
+        ></image-cropper>
+        <img
+          [src]="croppedImage || f.image.value"
+          [style.border]="croppedImage ? '1px solid black' : 'none'"
+          style="max-height: 400px; max-width: 400px"
+        />
+      </div>
+      <input
+        type="file"
+        class="d-none"
+        (click)="$event.target.value = null"
+        (change)="fileChangeEvent($event)"
+        accept="image/jpg,image/jpeg"
+        ng2FileSelect
+        [uploader]="uploader"
+        #upload
+      />
+      <br />
+      <br />
+      <button
+        class="btn btn-outline-primary"
+        (click)="cropperAspectRatio = 4 / 5"
+      >
+        4:5
+      </button>
+      <button
+        class="btn btn-outline-primary"
+        (click)="cropperAspectRatio = 1 / 1"
+      >
+        1:1
+      </button>
+      <button
+        class="btn btn-outline-primary"
+        (click)="cropperAspectRatio = 16 / 9"
+      >
+        16:9
+      </button>
+      <button class="btn btn-outline-primary" (click)="rotateLeft()">
+        Rotate left
+      </button>
+      <button class="btn btn-outline-primary" (click)="rotateRight()">
+        Rotate right
+      </button>
+      <button class="btn btn-outline-primary" (click)="flipHorizontal()">
+        Flip horizontal
+      </button>
+      <button class="btn btn-outline-primary" (click)="flipVertical()">
+        Flip vertical
+      </button>
+      <br />
+      <br />
+      <button
+        class="btn btn-outline-primary"
+        (click)="toggleContainWithinAspectRatio()"
+      >
+        {{
+          containWithinAspectRatio
+            ? "Fill Aspect Ratio"
+            : "Contain Within Aspect Ratio"
+        }}
+      </button>
+      <button class="btn btn-outline-primary" (click)="resetImage()">
+        Reset image
+      </button>
+      <!-- <br />
+      <br /> -->
+      <!-- <input
+        [(ngModel)]="rotation"
+        placeholder="Rotation"
+        type="number"
+        (keyup)="updateRotation()"
+        [ngModelOptions]="{ standalone: true }"
+      /> -->
+      <!-- <button class="btn btn-outline-primary" (click)="zoomOut()">
+        Zoom -
+      </button>
+      <button class="btn btn-outline-primary" (click)="zoomIn()">Zoom +</button> -->
+
+      <errors [isSubmit]="isSubmit" [control]="f.image"></errors>
+      <div class="card1 mt-4 py-1">
+        <h6 class="px-3">Caption</h6>
+
+        <div class="caption mx-2 mt-3">
+          <textarea
+            placeholder="Post Caption"
+            name=""
+            id=""
+            cols="30"
+            formControlName="caption"
+            rows="4"
+            class="w-100 border-0 rounded p-3"
+          ></textarea>
+          <errors [isSubmit]="isSubmit" [control]="f.caption"></errors>
+        </div>
+      </div>
+      <div class="d-flex align-items-center mt-2">
+        <i
+          class="pointer fas fa-calendar-day fa-3x"
+          [owlDateTimeTrigger]="dateTime"
+        ></i>
+        <input
+          class="d-none"
+          formControlName="postTime"
+          placeholder="8865 5858585"
+          [owlDateTime]="dateTime"
+        />
+        <p class="text-blue ml-3 mt-3">
+          {{ f.postTime?.value | date: "yyyy-MM-dd" }}
+
+          <span class="text-aqua"
+            >{{ f.postTime?.value | date: "h:mm a" }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center my-4">
+      <div>
+        <button
+          class="btn btn-green"
+          (click)="onSubmit()"
+          [disabled]="proposal?.contentStatus === 4"
+        >
+          Post Now
+        </button>
+
+        <button
+          class="btn btn-green"
+          (click)="schedule()"
+          [disabled]="proposal?.contentStatus === 4"
+        >
+          Schedule
+        </button>
+
+        <owl-date-time #dateTime></owl-date-time>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="this.isLoader"></app-loader>
+<upload-file
+  (upload)="onUploadImage($event)"
+  (remove)="onRemoveImage($event)"
+  [accept]="'image/jpeg'"
+  class="d-none"
+  #upload1
+>
+</upload-file>
