@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <app-table-filters
+        (onFilterChange)="onTypeClick($event)"
+        (onSearchClicked)="onSearchClick($event)"
+        (onCampaignTypeChanged)="campaignTypeChange($event)"
+      >
+      </app-table-filters>
+      <no-content
+        *ngIf="!isLoader && (!result || result.docs.length === 0); else data"
+        [label]="'No Campaigns here!'"
+      >
+      </no-content>
+      <ng-template #data>
+        <h3 class="fs-25 fw-500 text-blue py-3">
+          {{ status | campaignStatus }} Campaigns
+        </h3>
+        <campaign-list-table
+          [result]="result"
+          [isCreatedByVisible]="true"
+        ></campaign-list-table>
+      </ng-template>
+      <app-loader *ngIf="isLoader"></app-loader>
+    </div>
+  </div>
+  <!-- pagination -->
+  <app-pagination
+    *ngIf="result?.totalDocs > limit"
+    (onPageChange)="onClickPage($event)"
+    [page]="this.page"
+    [limit]="this.limit"
+    [totalDocs]="result?.totalDocs"
+  >
+  </app-pagination>
+</div>

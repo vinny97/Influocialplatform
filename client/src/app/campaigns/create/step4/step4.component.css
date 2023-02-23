@@ -1,0 +1,144 @@
+.iphone {
+  background: #ffffff;
+  box-shadow: 0px 0px 0px rgba(63, 63, 68, 0.05),
+    0px 1.27604px 3.82811px rgba(63, 63, 68, 0.15);
+  color: #3068ff;
+  padding: 15px;
+  width: 180px;
+  border-radius: 12px;
+  margin-left: auto;
+  text-align: center;
+  font-weight: 500;
+}
+.detail h6 {
+  color: #353d5a;
+  margin: 20px 0px;
+}
+.detail p {
+  color: #64749e;
+  margin: 20px 0px;
+  font-size: 14px;
+}
+.g-card {
+  background: linear-gradient(
+      180deg,
+      rgba(211, 225, 254, 0.25) 0%,
+      rgba(134, 174, 253, 0.25) 100%
+    ),
+    #ffffff;
+  box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.notes {
+  border-radius: 5px;
+  background-color: #eef3da;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+.damadge {
+  border-radius: 5px;
+  background-color: rgba(245, 42, 54, 60%);
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+
+/* step3  */
+
+.step3 {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.step3 li {
+  list-style: none;
+  margin-right: 20px;
+}
+.step3 li:last-child {
+  margin-right: 0px;
+}
+
+.location {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.location li {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.location li div {
+  height: 60px;
+  width: 130px;
+  background-color: white;
+  box-shadow: 0px 0px 0px rgba(63, 63, 68, 0.05),
+    0px 1.27604px 3.82811px rgba(63, 63, 68, 0.15);
+  border-radius: 10px;
+}
+.country {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.location-icon {
+  height: 30px !important;
+  width: 30px !important;
+  border-radius: 100% !important;
+}
+.location-icon img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.duration {
+  background-color: white;
+  box-shadow: 0px 0px 0px rgba(63, 63, 68, 0.05),
+    0px 1.27604px 3.82811px rgba(63, 63, 68, 0.15);
+  border-radius: 10px;
+  padding: 20px;
+}
+.text-blue11 {
+  color: rgba(88, 106, 171, 1);
+}
+.price {
+  display: flex;
+}
+.price li {
+  width: 20%;
+}
+.price li.active {
+  color: #62eba8;
+  font-weight: 600;
+}
+
+.img-container {
+  height: 500px;
+}
+.avatar-image {
+  object-fit: contain;
+
+  height: 100%;
+  width: 90%;
+}
+.img-container-vision {
+  height: 250px;
+}
+.visionImagesArray {
+  object-fit: contain;
+
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.individual-img-container-vision {
+  background-color: #d4d4d4;
+  border-radius: 1.25rem;
+}

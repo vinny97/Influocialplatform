@@ -1,0 +1,21 @@
+<button
+  *ngIf="result?.status === 1"
+  class="btn btn-green green-shadow px-5"
+  (click)="update()"
+>
+  Approve
+</button>
+<button
+  *ngIf="result?.status === 1"
+  class="btn btn-danger green-shadow px-5"
+  (click)="onReject()"
+>
+  Reject
+</button>
+
+<app-reject-message
+  [id]="result?._id"
+  [isView]="false"
+  [message]="result?.rejectMessage"
+  (campaignRejected)="statusUpdated($event)"
+></app-reject-message>

@@ -1,0 +1,199 @@
+<div *ngIf="form" [formGroup]="form" class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h6 class="fs-14 fw-500 text-blue">Campaign Name</h6>
+      <div class="form-group">
+        <input class="form-control name" formControlName="name" />
+        <errors [control]="f.name" [isSubmit]="isSubmit"></errors>
+      </div>
+
+      <div *ngIf="this.campaign?.type === 2" class="row pt-5">
+        <div class="col-lg-5">
+          <h6 class="fs-18 text-blue fw-600">Category</h6>
+          <div class="select-with-icon">
+            <ng-select [items]="categories" class="step1-sel" formControlName="category" bindLabel="name" bindValue="id"
+              [searchable]=false readonly placeholder="Category"></ng-select>
+            <!-- <img src="assets/select.png" alt=""> -->
+          </div>
+          <errors [control]="f.category" [isSubmit]="isSubmit"></errors>
+        </div>
+      </div>
+      <div *ngIf="this.campaign?.type === 1" class="pt-3">
+        <p class="text-blue fs-14 fw-500">Is this a physical product?</p>
+        <p class="text-blue fs-14 fw-500">
+          Does the influencer need the <br />
+          product for this campaign?
+        </p>
+      </div>
+      <div *ngIf="this.campaign?.type === 1" class="checkboxes">
+        <div class="form-check ml-3">
+          <input type="checkbox" (change)="onYesClick($event.target.checked)" [checked]="f.isPhysicalProduct.value"
+            class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label pointer" for="exampleCheck1">Yes</label>
+        </div>
+        <div class="form-check ml-4">
+          <input type="checkbox" (change)="onNoClick($event.target.checked)" [checked]="!f.isPhysicalProduct.value"
+            class="form-check-input" id="exampleCheck2" />
+          <label class="form-check-label pointer" for="exampleCheck2">No</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card px-3 py-3">
+        <div class="d-flex align-items-center">
+          <h6 class="fs-16 fw-500 text-blue mb-0">Campaign Image</h6>
+          <div class="upload ml-auto" (click)="uploadImg.click()">
+            <img src="../../assets/upload.png" />
+            <a href="javascropt:void(0)" class="fs-14 text-blue pl-2 mb-0">Upload</a>
+          </div>
+        </div>
+        <div class="image">
+          <upload-img [control]="f.image" #uploadImg></upload-img>
+        </div>
+        <errors [control]="f.image" [isSubmit]="isSubmit"></errors>
+      </div>
+    </div>
+  </div>
+  <!-- Yes -->
+  <div *ngIf="this.campaign?.type === 1 && f.isPhysicalProduct.value" class="row my-3">
+    <div class="col-lg-7">
+      <div class="card px-3 py-3">
+        <div class="card-body">
+          <ul class="">
+            <li>
+              <div class="d-flex">
+                <div class="mr-3">
+                  <div class="form-check-1 mb-3 ml-2">
+                    <input checked class="form-check-input" type="radio" formControlName="physicalOption"
+                      name="physicalProductOptions" id="flexRadioDefault1" [value]="1" />
+                    <label class="form-check-label2" for="flexRadioDefault1"></label>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="fs-14 fw-500 text-blue mb-1">
+                    Influencer needs to purchase product
+                  </h6>
+                  <p class="fs-14 text-blue">
+                    Brand will ship product to the influencer
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="d-flex">
+                <div class="mr-3">
+                  <div class="form-check-1 mb-3 ml-2">
+                    <input class="form-check-input" name="physicalProductOptions" type="radio"
+                      formControlName="physicalOption" id="flexRadioDefault2" [value]="2" />
+                    <label class="form-check-label2" for="flexRadioDefault2"></label>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="fs-14 fw-500 text-blue mb-1">
+                    Influencers need to pay collateral (Expensive / High value
+                    product)
+                  </h6>
+                  <p class="fs-14 text-blue">
+                    Brand will ship product and we will take payment from
+                    influencer which will be held in escrow
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="d-flex">
+                <div class="mr-3">
+                  <div class="form-check-1 mb-3 ml-2">
+                    <input class="form-check-input" name="physicalProductOptions" type="radio"
+                      formControlName="physicalOption" id="flexRadioDefault3" [value]="3" />
+                    <label class="form-check-label2" for="flexRadioDefault3"></label>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="fs-14 fw-500 text-blue mb-1">
+                    I will ship the product to the influencer
+                  </h6>
+                  <p class="fs-14 text-blue">
+                    Influencer will purchase product, create content and send a
+                    post content
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- No -->
+  <div *ngIf="this.campaign?.type === 1 && !f.isPhysicalProduct.value" class="row my-3">
+    <div class="col-lg-7">
+      <div class="card px-3 py-3">
+        <div class="card-body">
+          <ul>
+            <li>
+              <p class="fs-14 text-blue">
+                Please provide as much information to create a more effective
+                campagin
+              </p>
+            </li>
+            <li>
+              <p class="fs-14 text-blue">
+                Brand needs to provide images the user can use for the post
+              </p>
+            </li>
+            <li>
+              <p class="fs-14 text-blue">
+                If you would like influencers to submit their own please specify
+                in the brief below
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-lg-12">
+      <h6 class="fs-20 fw-600 text-blue text-center py-4">
+        Campaigns Objective
+      </h6>
+      <div class="row">
+        <div *ngFor="let objective of objectives" (click)="onObjectiveClick(objective.id)"
+          class="col-lg-2 px-1 pointer">
+          <div class="custom-card" [ngClass]="
+              f.objective.value === objective.id ? 'bg-green' : 'bg-blue'
+            ">
+            <p class="mb-0">{{ objective.name }}</p>
+          </div>
+        </div>
+        <errors [control]="f.objective" [isSubmit]="isSubmit"></errors>
+      </div>
+      <div class="pt-5">
+        <h6 class="fs-18 text-blue fw-600">Product/Service</h6>
+        <div class="form-group">
+          <textarea class="form-control" formControlName="service" rows="6"
+            placeholder="Describe your product or service to the influencers."></textarea>
+          <errors [control]="f.service" [isSubmit]="isSubmit"></errors>
+        </div>
+      </div>
+      <div *ngIf="this.campaign?.type === 1" class="row pt-5">
+        <div class="col-lg-5">
+          <h6 class="fs-18 text-blue fw-600">Category</h6>
+          <div class="select-with-icon">
+            <ng-select [items]="categories" class="step1-sel" formControlName="category" bindLabel="name" bindValue="id"
+              placeholder="Category"></ng-select>
+            <!-- <img src="assets/select.png" alt=""> -->
+          </div>
+          <errors [control]="f.category" [isSubmit]="isSubmit"></errors>
+        </div>
+      </div>
+      <div class="row pull-right">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

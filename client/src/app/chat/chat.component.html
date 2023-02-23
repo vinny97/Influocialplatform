@@ -1,0 +1,144 @@
+<div class="container" *ngIf="!isLoading">
+  <div class="wrapper">
+    <div class="left-aside border-0" [ngClass]="smHide ? 'sm-hide' : 'd-block'">
+      <ul>
+        <li class="cursor">
+          <div class="user">
+            <div class="user-detail">
+              <h4 class="text-center">Messages</h4>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div
+        class="inner-side"
+        *ngIf="this.users?.totalDocs !== 0; else noFriend"
+      >
+        <ul>
+          <!--  -->
+          <li
+            *ngFor="let u of users?.docs"
+            class="cursor"
+            (click)="onUserClick(u)"
+            [class.active]="selectedUser._id === getOtherUser(u)._id"
+          >
+            <div class="user">
+              <div class="user-img">
+                <img [src]="getOtherUser(u)?.image | image" alt="" />
+              </div>
+              <div class="user-detail">
+                <div class="name">{{ getOtherUser(u) | name }}</div>
+                <div class="time">
+                  {{ u.lastMessage?.message || "" }}
+                </div>
+                <div class="time">
+                  {{ u.lastMessage?.createdAt | ago }}
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <ng-template #noFriend>
+        <div class="inner-side">No Friends</div>
+      </ng-template>
+    </div>
+    <div
+      class="right-aside border-0"
+      [ngClass]="{ 'd-block': smHide }"
+      *ngIf="this.users?.totalDocs !== 0; else noMessage"
+    >
+      <div class="top-right px-3 d-flex align-items-center">
+        <div class="d-md-none mr-4 primary-text" (click)="onBackClick()">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="user-img1">
+          <img *ngIf="selectedUser" [src]="selectedUser.image | image" alt="" />
+        </div>
+        <div class="user-detail align-items-center">
+          <div *ngIf="selectedUser" class="name">{{ selectedUser | name }}</div>
+          <div class="online-time">
+            <p class="fs-12 text-light-grey pb-0 m-0">ONLINE</p>
+          </div>
+        </div>
+        <!-- <div class="search-box ml-auto">
+          <span><i class="fas fa-search"></i></span>
+          <input type="text" placeholder="Search" class="search-bar-right rounded-0">
+        </div> -->
+      </div>
+      <hr class="bg-white m-0 p-0" />
+      <div class="chat_box" #chatBoxScroller style="overflow: scroll">
+        <div class="text-center my-3">
+          <a
+            href="javascript:void(0)"
+            *ngIf="hasMoreChat"
+            class="btn btn-sm-primary font-italic"
+            (click)="loadChat()"
+            >Load more</a
+          >
+          <loader *ngIf="chatLoader"></loader>
+        </div>
+        <div class="chat">
+          <div class="pb-3" *ngFor="let msg of chat">
+            <div class="message-row">
+              <div
+                class="message"
+                [ngClass]="
+                  selectedUser._id === msg.createdBy
+                    ? 'message-sent'
+                    : 'message-recieved'
+                "
+              >
+                <div class="message-bubble">
+                  {{ msg.message || "No Message" }}
+                </div>
+              </div>
+              <div
+                [ngClass]="
+                  selectedUser._id === msg.createdBy ? 'date-1' : 'date'
+                "
+              >
+                {{ msg?.createdAt | ago }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex p-3 bg-transparent-gray border-top">
+        <div class="sent-button px-3 w-100">
+          <div class="form-group">
+            <div class="Input_with_icon">
+              <input
+                type="text"
+                [(ngModel)]="message"
+                (keyup.enter)="sendMessage()"
+                placeholder="Type your message here"
+                class="form-control border-0 bg-transparent"
+                height="100%"
+              />
+
+              <div class="show_btn" (click)="sendMessage()">
+                <img src="assets/send.png" height="20" alt="" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <img [src]="this.url" alt="" />
+          </div>
+        </div>
+        <div class="plus-btn">
+          <upload-file (upload)="onUploadImage($event)" #upload></upload-file>
+          <div (click)="upload.click()" class="add-box pointer">
+            <a><img src="assets/plus.png" height="50" alt="" /> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noMessage>
+      <div class="mt-5">
+        No Chat History, Select a receipent to send a message
+      </div>
+    </ng-template>
+  </div>
+</div>
+<!-- <app-loader *ngIf="!isChatLoad"></app-loader> -->

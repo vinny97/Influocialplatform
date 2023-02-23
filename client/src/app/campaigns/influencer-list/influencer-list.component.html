@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list">
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(0)"
+            [ngClass]="{ active: toggle === 0 }"
+            >Active</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(1)"
+            [ngClass]="{ active: toggle === 1 }"
+            >Favorites</a
+          >
+        </li>
+
+        <li class="ml-auto" *ngIf="this.type === 1" (click)="toggleCampaign(2)">
+          <a href="javascript:void(0)" class="btn btn-primary text-white px-4"
+            >Influencer Campaigns</a
+          >
+        </li>
+        <li class="ml-auto" *ngIf="this.type === 2" (click)="toggleCampaign(1)">
+          <a href="javascript:void(0)" class="btn btn-primary text-white px-4"
+            >ShoutOut Campaigns</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="input-group">
+    <div class="form-outline">
+      <form class="example" style="margin: auto; max-width: 300px">
+        <input
+          type="text"
+          name="search2"
+          [(ngModel)]="searchQuery"
+          (input)="isEmpty()"
+          placeholder="Search by name"
+        />
+        <button type="submit" (click)="onSearchClick()">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <ng-select
+      [items]="categories"
+      class="categories-selector"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Category"
+      [clearable]="true"
+      [(ngModel)]="this.selectedCategory"
+      (change)="getAll()"
+    ></ng-select>
+  </div>
+
+  <no-content
+    *ngIf="!isLoader && (!result || result?.docs.length === 0); else data"
+    [label]="'No Campaigns here!'"
+  >
+  </no-content>
+  <ng-template #data>
+    <div class="row mt-4">
+      <div class="col-lg-12 mb-3">
+        <h4>{{ this.CAMPAIGN_TYPE[this.type] }} Campaigns</h4>
+      </div>
+
+      <div *ngFor="let campaign of result?.docs" class="col-lg-6 mb-4 mb-lg-5">
+        <h5>{{ campaign?.name }}</h5>
+        <div
+          class="card text-center"
+          [style.background-image]="campaign?.image | image | sanitizeUrl"
+        >
+          <div class="">
+            <button
+              class="btn btn-green green-shadow"
+              (click)="detail(campaign?._id)"
+            >
+              View Campaign
+            </button>
+            <button class="btn btn-green green-shadow" disabled>
+              {{ campaign.category | campaignCategory }}
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <i
+            class="fab fa-instagram fa-2x"
+            [src]="campaign?.socialMediaChannel | smLogo"
+          ></i>
+          <i
+            [ngClass]="
+              campaign?.isFavorite ? 'fas fa-heart fa-2x' : 'far fa-heart fa-2x'
+            "
+            class="ml-2"
+            (click)="toggleFavorite(campaign)"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- pagination -->
+  <app-pagination
+    *ngIf="result?.totalDocs > limit"
+    (onPageChange)="onClickPage($event)"
+    [page]="this.page"
+    [limit]="this.limit"
+    [totalDocs]="result?.totalDocs"
+  >
+  </app-pagination>
+
+  <app-loader *ngIf="this.isLoader"></app-loader>
+</div>

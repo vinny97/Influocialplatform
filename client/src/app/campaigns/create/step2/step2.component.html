@@ -1,0 +1,316 @@
+<div class="container-fluid" [formGroup]="form">
+  <div class="row">
+    <div class="col-lg-12">
+      <h6 class="fs-18 fw-600 text-blue">Vision Board</h6>
+      <ul>
+        <li *ngFor="let img of f.visionImages.value; let i = index">
+          <div class="add-box">
+            <div *ngIf="f.visionImages.value" class="post-image mt-4">
+              <i class="far fa-times-circle" (click)="onRemoveImage(i)"></i>
+            </div>
+            <img [src]="img | image" height="200" width="200" />
+          </div>
+        </li>
+
+        <li>
+          <upload-file
+            (upload)="onUploadImage($event)"
+            (remove)="onRemoveImage($event)"
+            #upload
+          ></upload-file>
+          <div
+            (click)="upload.click()"
+            class="add-box pointer"
+            *ngIf="this.form.controls['visionImages'].value.length < 7"
+          >
+            <div class="add-icon">
+              <img src="assets/add.png" height="20" />
+            </div>
+          </div>
+        </li>
+      </ul>
+      <errors [isSubmit]="isSubmit" [control]="f.visionImages"></errors>
+      <div *ngIf="this.campaign?.type === 1">
+        <h6 class="fs-16 fw-500 text-blue pt-4">
+          Describe what type of content your looking for?
+        </h6>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            rows="6"
+            formControlName="description"
+            placeholder="Let the influencer know anything specific you want i.e. ideas based on the vision board. "
+          ></textarea>
+          <errors [isSubmit]="isSubmit" [control]="f.description"></errors>
+        </div>
+      </div>
+      <h6 class="fs-16 fw-500 text-blue pt-4">Call for action</h6>
+      <div class="form-group">
+        <div class="form-group">
+          <input
+            class="form-control action"
+            placeholder="Describe in one sentence what you are requesting from the influencers"
+            formControlName="CFA"
+          />
+          <errors [isSubmit]="isSubmit" [control]="f.CFA"></errors>
+        </div>
+      </div>
+
+      <div *ngIf="this.campaign?.type === 2">
+        <h6 class="fs-16 fw-500 text-blue pt-4">Brief the influencer</h6>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            rows="6"
+            formControlName="brief"
+            placeholder="Let the influencer know exactly what you're looking for i.e. ideas captions"
+          ></textarea>
+          <errors [isSubmit]="isSubmit" [control]="f.brief"></errors>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="d-flex">
+        <h6 class="fs-14 fw-500 text-blue">Helpful notes</h6>
+        <div *ngIf="isEmptyHelpfulNote" class="fs-12 pl-3 text-red">
+          Empty Note not allowed
+        </div>
+      </div>
+      <div class="add">
+        <img
+          src="assets/add.png"
+          (click)="onAddHelp()"
+          class="pointer"
+          height="20"
+        />
+        <div class="form-group">
+          <input
+            class="form-control add-input"
+            (keyup.enter)="onAddHelp()"
+            [(ngModel)]="helpInput"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="What to do "
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5">
+          <div
+            *ngFor="let note of this.f.help.value; let i = index"
+            class="notes mb-2"
+          >
+            <p class="fs-12 text-blue text-center mb-0">
+              {{ note }}
+              <a href="javascript:void(0)" (click)="onRemoveHelp(i)"
+                ><i class="fa fa-times"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <h6 class="fs-14 fw-500 text-blue">Avoid</h6>
+        <div *ngIf="isEmptyAvoidNote" class="fs-12 pl-3 text-red">
+          Empty Note not allowed
+        </div>
+      </div>
+      <div class="add">
+        <img
+          src="assets/add.png"
+          (click)="onAddAvoid()"
+          class="pointer"
+          height="20"
+        />
+        <div class="form-group">
+          <input
+            class="form-control add-input"
+            (keyup.enter)="onAddAvoid()"
+            [(ngModel)]="avoidInput"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="What not to do "
+          />
+        </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-lg-5">
+          <div
+            class="damadge mb-2"
+            *ngFor="let note of this.f.avoid.value; let i = index"
+          >
+            <p class="fs-12 text-blue text-center mb-0">
+              {{ note }}
+              <a href="javascript:void(0)" (click)="onRemoveAvoid(i)"
+                ><i class="fa fa-times"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <h6 class="fs-14 fw-500 text-blue py-3">Social Media Channels</h6>
+      <ul class="social-content">
+        <li
+          *ngFor="let channel of SOCIAL_MEDIAS"
+          (click)="selectSocialMedia(channel.id)"
+        >
+          <div class="social">
+            <div
+              [ngClass]="
+                f.socialMediaChannel.value === channel.id
+                  ? 'add-icon highlighted'
+                  : 'add-icon'
+              "
+            >
+              <img src="assets/add.png" height="20" />
+            </div>
+            <img [src]="channel.logoUrl" width="20" class="ml-3" />
+            <p class="fs-16 fw-500 text-blue mb-0 pl-2">{{ channel.name }}</p>
+          </div>
+        </li>
+      </ul>
+      <errors [isSubmit]="isSubmit" [control]="f.socialMediaChannel"></errors>
+    </div>
+  </div>
+  <div [formGroup]="f.channels" class="row" *ngIf="f.socialMediaChannel.value">
+    <div class="col-lg-6">
+      <div class="card px-3 py-3">
+        <div class="social">
+          <img
+            class="ml-3"
+            [src]="f.socialMediaChannel.value | smLogo"
+            width="30"
+          />
+          <p class="fs-16 fw-500 text-blue mb-0 pl-2">
+            {{ f.socialMediaChannel.value | smName }}
+          </p>
+        </div>
+
+        <p class="fs-14 fw-500 text-blue pl-3">Choose Post Type</p>
+        <div class="d-flex align-items-center">
+          <button
+            (click)="channels.postType.setValue(1)"
+            [ngClass]="
+              channels.postType.value === 1
+                ? 'btn btn-simple highlighted'
+                : 'btn btn-simple'
+            "
+          >
+            Posts
+          </button>
+          <button
+            (click)="channels.postType.setValue(2)"
+            [ngClass]="
+              channels.postType.value === 2
+                ? 'btn btn-simple ml-3 highlighted'
+                : 'btn btn-simple ml-3'
+            "
+          >
+            Stories
+          </button>
+        </div>
+        <p class="fs-14 fw-500 text-blue pt-3 pr-5">
+          Let Influencer know what to submit with your post. Add any hashtags
+          and @handles, type in the name and press the ‘+’ button.
+        </p>
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="fs-14 text-blue pt-2 mb-0">Add the #tags</p>
+            <div class="d-flex align-items-center">
+              <div class="form-group mb-0 w-100">
+                <input
+                  class="form-control"
+                  placeholder="Enter any #tags"
+                  (keyup.enter)="onAddTag()"
+                  [(ngModel)]="tagInput"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+              <img
+                src="assets/Group 427320092.png"
+                height="30"
+                class="pl-2"
+                (click)="onAddTag()"
+              />
+            </div>
+            <div class="tags">
+              <div
+                *ngFor="let tag of channels.tags.value; let i = index"
+                class="tag"
+              >
+                <div class="d-flex align-items-center pl-2">
+                  <p class="fs-12 mb-0">#{{ tag }}</p>
+                  <a
+                    href="javascript:void(0)"
+                    class="fs-14 fw-600 mb-0 ml-auto pl-2 pr-1"
+                    (click)="onRemoveTag(i)"
+                    >x</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handles -->
+        <div class="row pt-3">
+          <div class="col-lg-12">
+            <p class="fs-14 text-blue pt-2 mb-0">Add the @handles</p>
+            <div class="d-flex align-items-center">
+              <div class="form-group mb-0 w-100">
+                <input
+                  class="form-control"
+                  placeholder="Enter any Instagram @handles"
+                  (keyup.enter)="onAddHandle()"
+                  [(ngModel)]="handleInput"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+              <img
+                src="assets/Group 427320092.png"
+                height="30"
+                class="pl-2"
+                (click)="onAddHandle()"
+              />
+            </div>
+            <div class="tags">
+              <div
+                class="tag"
+                *ngFor="let handle of channels.handles.value; let i = index"
+              >
+                <div class="d-flex align-items-center pl-2">
+                  <p class="fs-12 mb-0">@ {{ handle }}</p>
+                  <a
+                    href="javascript:void(0)"
+                    class="fs-14 fw-600 mb-0 ml-auto pl-2 pr-1"
+                    (click)="onRemoveHandle(i)"
+                    >x</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-lg-12">
+            <p class="fs-14 text-blue pt-2 mb-0">Caption (Optional)</p>
+            <div class="form-group mb-0 w-100">
+              <input
+                formControlName="caption"
+                class="form-control"
+                placeholder="Enter example Caption"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pull-right">
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      Next
+    </button>
+  </div>
+</div>

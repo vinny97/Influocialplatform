@@ -1,0 +1,53 @@
+<div class="container">
+  <button
+    class="btn btn-outline-primary float-right"
+    [routerLink]="['/capture/scheduled-posts/list']"
+    routerLinkActive="router-link-active"
+  >
+    Scheduled Posts
+  </button>
+  <div class="row">
+    <div *ngIf="!isLoader">
+      <app-publish-post [proposal]="this.result"> </app-publish-post>
+    </div>
+  </div>
+  <div class="row mt-5 justify-content-around align-items-start flex-nowrap">
+    <div class="instructions col-lg-6 card">
+      <h4>Limitations</h4>
+      <ul class="instruction-list">
+        <li>Facebook authentication.</li>
+        <li>
+          Can only be used to publish to business IG User accounts; Creator IG
+          User accounts(Personal accounts) are not supported.
+        </li>
+        <li>Accounts are limited to 25 posts within a 24 hour period.</li>
+
+        <li>Shopping tags are not supported.</li>
+        <li>Branded content tags are not supported.</li>
+        <li>Multi-image posts are not supported.</li>
+        <li>
+          To avoid inconveniene using scheduler, you should select any time
+          stamp at least one minute ahead of current time.
+        </li>
+      </ul>
+    </div>
+    <div class="photo-requirements col-lg-6 card">
+      <h4>Photo Requirements</h4>
+      <ul class="photo-requirements-list">
+        <li>Maximum file size: 8MiB.</li>
+        <li>Aspect ratio: Must be within a 4:5 to 1.91:1 range.</li>
+        <li>
+          Minimum width: 320 (will be scaled up to the minimum if necessary).
+        </li>
+        <li>
+          Maximum width: 1440 (will be scaled down to the maximum if necessary).
+        </li>
+        <li>Height: Varies, depending on width and aspect ratio.</li>
+        <li>
+          JPEG is the only image format supported. Extended JPEG formats such as
+          MPO and JPS are not supported.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

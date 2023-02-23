@@ -1,0 +1,160 @@
+<div class="container-fluid pl-0">
+  <div class="row">
+    <div class="col-md-12 mb-4 pl-0">
+      <div class="banner-img">
+        <img [src]="result?.image | image" width="100%" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="row my-3 my-lg-5">
+    <div class="col-md-4">
+      <h6 class="fs-14 fw-400 text-muted">Campaign Start Date</h6>
+      <h6 class="fw-500 text-blue fs-16 my-3">
+        {{ result?.startDate | date }}
+      </h6>
+
+      <h6 class="fs-14 fw-400 text-muted">Campaign Budget</h6>
+      <h6 class="fw-500 text-blue fs-16 my-3">
+        {{ result?.budget | currency }}
+      </h6>
+      <h6 class="fs-14 fw-400 text-muted">Budget Per Post</h6>
+      <h6 class="fw-500 text-blue fs-16 my-3">
+        {{ result?.cost | currency }}
+      </h6>
+      <h6 class="fs-14 fw-400 text-muted">Social Media Platform</h6>
+      <img [src]="result?.socialMediaChannel | smLogo" height="25" alt="" />
+      <div *ngIf="result?.channels?.postType">
+        <h6 class="fs-14 fw-400 text-muted my-3">Submission Type</h6>
+        <div class="d-flex">
+          <button class="btn btn-simple highlighted">
+            {{ result?.channels?.postType | postType }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div *ngxPermissionsOnly="[UserType.influencer]">
+        <button *ngIf="!isProposalSent(result?.proposals)" (click)="proposal(result?._id)"
+          class="btn btn-green green-shadow px-5">
+          Apply
+        </button>
+        <button *ngIf="isProposalSent(result?.proposals)" class="btn btn-green green-shadow px-5">
+          {{ +getProposalStatus(result?.proposals) | proposalStatus }}
+        </button>
+      </div>
+
+      <!-- Status for Brand and Agency -->
+      <div *ngxPermissionsOnly="[UserType.brand, UserType.agency]">
+        <button (click)="brandClick(result?.status)" class="btn btn-green green-shadow px-5">
+          {{ result?.status | campaignStatus }}
+        </button>
+      </div>
+
+      <img [src]="this.brand?.image | image" class="my-3" height="100" alt="" />
+      <h6 class="fw-400 text-blue fs-16 my-2">Call for action</h6>
+      <h6 class="fs-18 fw-500">{{ result?.CFA }}</h6>
+      <h6 class="fs-18 fw-500">{{ result?.name }}</h6>
+    </div>
+    <div class="col-md-4">
+      <h6 class="fs-14 fw-400 text-muted">About Us</h6>
+      <p>{{ this.result?.service }}</p>
+      <h6 class="fs-14 fw-400 text-muted">Campaign Duration</h6>
+      <h6 class="fw-500 text-blue fs-16 my-3">{{ result?.duration }}</h6>
+      <h6 class="fs-14 fw-400 text-muted">Campaign Objective</h6>
+      <h6 class="fw-500 text-blue fs-16 my-3" *ngIf="result?.objective">
+        {{ result?.objective | objective }}
+      </h6>
+    </div>
+  </div>
+
+  <div class="row my-3 my-lg-5">
+    <div class="col-md-4">
+      <h6 class="fs-14 fw-400 text-muted">Influencer Requirements</h6>
+      <p>{{ result?.influencer?.gender | gender }}</p>
+      <p>
+        Age {{ result?.influencer?.age[0] }}-{{ result?.influencer?.age[1] }}
+      </p>
+      <p>{{ result?.socialMediaChannel | smName }}</p>
+      <p>
+        {{ result?.influencer?.followers[0] }}k-{{
+        result?.influencer?.followers[1]
+        }}k followers
+      </p>
+    </div>
+
+    <div *ngIf="result?.isTargetAudience" class="col-md-4">
+      <h6 class="fs-14 fw-400 text-muted">Target Audience</h6>
+      <p>{{ result?.audience?.gender | gender }}</p>
+      <p>
+        Age {{ result?.audience?.target[0] }}-{{ result?.audience?.target[1] }}
+      </p>
+      <p>{{ result?.audience?.location | country }}</p>
+    </div>
+
+    <div *ngIf="result?.type === 1" class="col-md-4">
+      <h6 class="fs-14 fw-400 text-muted">Physical Product</h6>
+      <p *ngIf="result?.isPhysicalProduct">This is a physical product</p>
+      <p *ngIf="!result?.isPhysicalProduct">This is not a physical product</p>
+    </div>
+  </div>
+
+  <app-image-carousal *ngIf="result?.visionImages" [images]="result?.visionImages"></app-image-carousal>
+
+  <div class="row my-3 my-lg-5">
+    <div class="col-md-9">
+      <h6 class="fs-14 fw-400 text-muted">Content To Create</h6>
+      <p *ngIf="result?.type === 1">{{ result?.description }}</p>
+      <p *ngIf="result?.type === 2">{{ result?.brief }}</p>
+    </div>
+  </div>
+
+  <div class="row my-3 my-lg-5">
+    <div *ngIf="result?.channels?.tags?.length > 0" class="col-md-6">
+      <h6 class="fs-14 fw-400 text-muted my-3">Social Media Tags</h6>
+      <div class="d-flex flex-wrap">
+        <div class="iphone1 mr-4 mb-3" *ngFor="let tag of result?.channels?.tags">
+          #{{ tag }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="result?.channels?.handles.length > 0" class="col-md-6">
+      <h6 class="fs-14 fw-400 text-muted my-3">Social Media @</h6>
+      <div class="d-flex flex-wrap">
+        <div class="iphone1 mr-4 mb-3" *ngFor="let handle of result?.channels?.handles">
+          @{{ handle }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="result?.channels?.caption !== ''" class="col-md-6">
+      <h6 class="fs-14 fw-400 text-muted my-3">Caption</h6>
+      <div class="d-flex flex-wrap">
+        <div class="iphone1 mr-4 mb-3">{{ result?.channels?.caption }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3 my-lg-5">
+    <div class="col-md-6">
+      <h6 class="fs-14 fw-400 text-muted my-3">Helpful Notes</h6>
+      <div class="mb-3" *ngFor="let note of result?.help">
+        <img src="assets/Checkmark Square 1.png" class="mr-3" height="30" alt="" />
+        {{ note }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h6 class="fs-14 fw-400 text-muted my-3">Avoid</h6>
+      <div class="mb-3" *ngFor="let av of result?.avoid">
+        <img src="assets/Checkmark Square 1.png" class="mr-3" height="30" alt="" />
+        {{ av }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Actions -->
+  <div *ngxPermissionsOnly="[UserType.admin]">
+    <app-admin-actions *ngIf="result" [result]="result" (statusChanged)="onStatusChange($event)"></app-admin-actions>
+  </div>
+</div>
+
+<!-- Displays Rejection Message -->
+<app-reject-message [isView]="true" [message]="result?.rejectMessage"></app-reject-message>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4" *ngFor="let post of result?.result">
+          <div class="card">
+            <img [src]="post.image | image" height="250px" width="100%" />
+
+            <div class="card-content">
+              <p class="">
+                {{ post?.caption }}
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-success">
+              <small>{{ post?.postTime | date: "short" }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

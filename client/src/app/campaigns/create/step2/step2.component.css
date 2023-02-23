@@ -1,0 +1,143 @@
+ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+li{
+  list-style: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+li:last-child{
+margin-right: 0px;
+}
+.add-box{
+  height: 200px;
+  width: 200px;
+  background-color: #E9F1F9;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  display: flex;
+  align-items: center;
+}
+.add-box img{
+  height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.add-icon{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  border: 1px solid #3B5F99;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 45px;
+}
+.form-control{
+   border: none;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  border-radius: 6px;
+}
+.action {
+  width: 100%;
+  height: 60px;
+  border: none;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  border-radius: 6px;
+}
+
+
+.card{
+  border-radius: 10px;
+  border: none;
+}
+.notes
+{
+  border-radius: 5px;
+  background-color: #EEF3DA;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+.damadge{
+   border-radius: 5px;
+  background-color: rgba(245, 42, 54, 60%);
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+.social-content{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.social-content li{
+  list-style: none;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+.social{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.add-icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: 1px solid #3B5F99;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 35px;
+}
+.add-input{
+  width: 100%;
+  height: 60px;
+  border: none;
+  box-shadow: 0px 5px 20px rgba(242, 242, 250, 0.05);
+  border-radius: 6px;
+  padding-left: 60px;
+}
+.add{
+  position: relative;
+}
+.add img{
+  position: relative;
+  top: 40px;
+  left: 20px;
+}
+.btn-simple{
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid rgba(59, 95, 153, 33%);
+  color: #3F54A0;
+  border-radius: 10px;
+}
+.tags{
+  display: flex;
+  align-items: center;
+}
+.tag{
+  margin-top: 5px;
+  margin-right: 10px;
+  background-color: #D5E1CC;
+  color: black;
+  height: 20px;
+  width: auto;
+}
+::placeholder{
+  font-size: 13px;
+  color: #949FC9;
+}
+
+.text-red{
+  color:rgba(245, 42, 54, 60%);
+}
+
+.highlighted {
+  background-color:  #62EBA8;
+}

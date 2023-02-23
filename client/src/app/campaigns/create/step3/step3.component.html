@@ -1,0 +1,194 @@
+<div class="container-fluid" [formGroup]="form">
+  <div class="row">
+    <div class="col-lg-4">
+      <h6 class="fs-14 fw-500 text-blue">Estimated campaign budget</h6>
+      <div class="form-group">
+        <input appNumericOnly class="form-control budget pl-4" formControlName="budget" placeholder="$" />
+        <errors [control]="f.budget" [isSubmit]="isSubmit"></errors>
+      </div>
+      <h6 class="fs-14 fw-500 text-blue pt-3">Estimated budget per post</h6>
+      <div class="form-group">
+        <input appNumericOnly class="form-control budget pl-4" formControlName="cost" placeholder="$" />
+        <errors [control]="f.cost" [isSubmit]="isSubmit"></errors>
+      </div>
+    </div>
+  </div>
+  <h6 class="fs-18 fw-500 text-blue">Target Influencers</h6>
+  <div [formGroup]="f.influencer">
+    <div class="row py-3">
+      <div class="col-lg-4">
+        <h6 class="fs-16 fw-500 text-blue">Gender</h6>
+        <ul>
+          <li *ngFor="let gender of genders" class="pointer" (click)="onInfluencerGenderClick(gender.id)">
+            <div class="gender" [ngClass]="{ active: influencer.gender.value == gender.id }">
+              <p class="text-blue fw-600 mb-0">{{ gender.name }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="fs-16 fw-500 text-blue">Followers</h6>
+        <div class="card px-3 pt-3">
+          <ngx-slider formControlName="followers" [(highValue)]="highValue" [options]="options"></ngx-slider>
+          <ul class="price mb-0 p-0">
+            <li class="active">
+              <div>
+                <p class="pt-2">2k</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="pt-2 text-blue fw-500">20k</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="pt-2 text-blue fw-500">50k</p>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <p class="pt-2 text-blue fw-500 _100k">100k</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-lg-4">
+        <h6 class="fs-16 fw-500 text-blue">Age</h6>
+        <div class="card px-3 pt-3">
+          <ngx-slider formControlName="age" [(highValue)]="ageValue" [options]="ageoptions"></ngx-slider>
+
+          <ul class="price mb-0 p-1">
+            <li class="active">
+              <div>
+                <p class="pt-2">15</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="pt-2 text-blue fw-500">25</p>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <p class="pt-2 text-blue fw-500 ml-1">50</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center">
+          <h6 class="fs-16 fw-500 text-blue">Location</h6>
+        </div>
+        <div class="">
+
+          <ng-select [items]="countries" [multiple]="true" bindLabel="name" bindValue="code" formControlName="location">
+
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="ng-value-label"><img [src]="item.avatar" width="20px" height="20px"> {{item.name}}</span>
+              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+            </ng-template>
+
+            <ng-template ng-option-tmp let-item="item">
+              <img [src]="item.avatar" width="20px" height="20px"> {{item.name}}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h6 class="fs-18 fw-500 text-blue py-4">Target Audience</h6>
+        <h6 class="fs-16 fw-500 text-blue">Do you want to set your target?</h6>
+
+        <ul>
+          <li>
+            <div class="yes-no">
+              <ul class="circle">
+                <li>
+                  <div class="form-check mb-3 ml-2">
+                    <input [checked]="isTarget" (change)="onTargetYes($event.target.checked)" class="form-check-input"
+                      type="radio" id="flexRadioDefault1" />
+                    <label class="form-check-label2" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="yes-no">
+              <ul class="circle">
+                <div class="form-check mb-3 ml-2">
+                  <input [checked]="!isTarget" (change)="onTargetNo($event.target.checked)" class="form-check-input"
+                    type="radio" id="flexRadioDefault2" />
+                  <label class="form-check-label2" for="flexRadioDefault2">
+                    No
+                  </label>
+                </div>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="isTarget">
+      <div [formGroup]="f.audience">
+        <div class="description">
+          <h6 class="fs-16 fw-500 text-blue">Who is your target audience? this is the audience you want to target</h6>
+          <textarea formControlName="description"></textarea>
+        </div>
+        <div class="row py-4">
+          <div class="col-lg-4">
+            <h6 class="fs-16 fw-500 text-blue">Gender</h6>
+            <ul>
+              <li *ngFor="let gender of genders" class="pointer" (click)="onAudienceGenderClick(gender.id)">
+                <div class="gender" [ngClass]="{ active: audience.gender.value == gender.id }">
+                  <p class="text-blue fw-600 mb-0">{{ gender.name }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <h6 class="fs-16 fw-500 text-purple">Target Any</h6>
+            <div class="card px-3 pt-3">
+              <ngx-slider formControlName="target" [(highValue)]="highValueloc" [options]="optionsloc"></ngx-slider>
+            </div>
+          </div>
+        </div>
+        <div class="row py-4">
+          <div class="col-lg-5">
+            <h6 class="fs-16 text-blue fw-600">Location</h6>
+            <ng-select [items]="countries" [multiple]="true" bindLabel="name" bindValue="code"
+              formControlName="location">
+
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <span class="ng-value-label"><img [src]="item.avatar" width="20px" height="20px"> {{item.name}}</span>
+                <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+              </ng-template>
+
+              <ng-template ng-option-tmp let-item="item">
+                <img [src]="item.avatar" width="20px" height="20px"> {{item.name}}
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pull-right">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

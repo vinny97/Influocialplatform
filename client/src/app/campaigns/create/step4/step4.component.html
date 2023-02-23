@@ -1,0 +1,264 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 mb-4">
+      <h6 class="fw-600 text-blue fs-18">Review & Submit</h6>
+    </div>
+    <div class="col-md-12 mb-4 img-container">
+      <img [src]="campaign.image | image" width="100%" height="100%" class="avatar-image" alt="" />
+    </div>
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="iphone">
+            {{ campaign.name }}
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="detail">
+            <h6>Objective</h6>
+            <p>{{ campaign.objective | objective }}</p>
+
+            <div class="mt-5">
+              <h6>Product / Service</h6>
+              <p>{{ campaign.service }}</p>
+            </div>
+            <div class="mt-5">
+              <h6>Describe what type of content your looking for?</h6>
+              <p *ngIf="this.campaign.type === 1">{{ campaign.description }}</p>
+              <p *ngIf="this.campaign.type === 2">{{ campaign.brief }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="fs-16 fw-500 text-blue">Сampaign budget</h6>
+          <div class="text-aqua">
+            {{ campaign.budget | currency }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h6 class="fs-16 fw-500 text-blue">Budget per post</h6>
+          <div class="text-aqua">
+            {{ campaign.cost | currency }}
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div *ngIf="campaign.type === 1 && campaign.isPhysicalProduct" class="g-card py-lg-5 px-4 py-4">
+            <div class="detail">
+              <h6>Physical Product</h6>
+              <!-- <p>www.apple.com/iphone12</p> -->
+              <p>{{ campaign.physicalOption | physicalOptions }}</p>
+            </div>
+          </div>
+          <h6 class="fs-16 fw-500 text-blue">Category</h6>
+          <div style="color: #64749e">
+            {{ campaign.category | campaignCategory }}
+          </div>
+          <h6 class="fs-16 fw-500 text-blue mt-4">Call for action</h6>
+          <div style="color: #64749e">{{ campaign.CFA }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3 my-lg-5 img-container-vision justify-content-center">
+    <div *ngFor="let v of campaign.visionImages" class="col-md-3 mb-4 ml-auto individual-img-container-vision">
+      <img [src]="v | image" class="visionImagesArray" alt="" />
+    </div>
+  </div>
+
+  <div *ngIf="campaign && campaign.help && campaign.help.length > 0" class="row">
+    <div class="col-lg-5">
+      <h6 class="fs-14 fw-500 text-blue">Helpful notes</h6>
+      <div class="notes mb-3" *ngFor="let n of campaign.help">
+        <p class="fs-12 text-blue text-center mb-0">{{ n }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="campaign && campaign.avoid && campaign.avoid.length > 0" class="row py-2">
+    <div class="col-lg-5">
+      <h6 class="fs-14 fw-500 text-blue">Avoid</h6>
+      <div *ngFor="let a of campaign.avoid" class="damadge mb-3">
+        <p class="fs-12 text-blue text-center mb-0">{{ a }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="campaign && campaign.socialMediaChannel" class="row">
+    <div class="col-md-12">
+      <h6 class="fs-14 fw-500 text-blue py-3">Social Media Channels</h6>
+      <ul class="social-content">
+        <li>
+          <div class="d-flex mb-4">
+            <img [src]="campaign.socialMediaChannel | smLogo" width="20" class="ml-3" />
+            <p class="fs-16 fw-500 text-blue mb-0 pl-2">
+              {{ campaign.socialMediaChannel | smName }}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- step 3 -->
+
+  <h4 class="fw-500 text-blue">Influencers</h4>
+  <div class="row py-3">
+    <div class="col-lg-4">
+      <ul class="step3">
+        <li>
+          <h6 class="fs-16 fw-500 text-blue11">Gender</h6>
+          <div class="">
+            <p class="text-blue mb-0">
+              {{ campaign.influencer.gender | gender }}
+            </p>
+          </div>
+        </li>
+        <li>
+          <h6 class="fs-16 fw-500 text-blue11">Followers</h6>
+          <div class="">
+            <p class="text-blue mb-0">
+              {{ campaign.influencer.followers[0] }}k-{{
+              campaign.influencer.followers[1]
+              }}k
+            </p>
+          </div>
+        </li>
+        <li>
+          <h6 class="fs-16 fw-500 text-blue11">Age</h6>
+          <div class="">
+            <p class="text-blue mb-0">
+              {{ campaign.influencer.age[0] }}-{{ campaign.influencer.age[1] }}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-4">
+      <h6 class="fs-16 fw-500 text-blue11">Location</h6>
+      <div class="px-3 pt-3">
+        <ul class="location mb-0 p-0">
+          <li>
+            <div class="country" *ngIf="campaign?.influencer?.location">
+
+              <div class="location-info-container" *ngFor="let country of campaign?.influencer?.location">
+                <img class="location-icon" height="25px" width="25px" [src]="country | countryFlag" />
+                <p class="country-name">{{country | countryName}}</p>
+              </div>
+
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isAudience">
+    <h4 class="fw-500 text-blue">Target audience {{ isAudience }}</h4>
+    <div class="row py-3">
+      <div class="col-lg-4">
+        <ul class="step3">
+          <li>
+            <h6 class="fs-16 fw-500 text-blue11">Gender</h6>
+            <div class="">
+              <p class="text-blue mb-0">
+                {{ campaign.audience.gender | gender }}
+              </p>
+            </div>
+          </li>
+          <li>
+            <h6 class="fs-16 fw-500 text-blue11">Target Age</h6>
+            <div class="">
+              <p class="text-blue mb-0">
+                {{ campaign.audience.target[0] }}-{{
+                campaign.audience.target[1]
+                }}
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <h6 class="fs-16 fw-500 text-blue11">Location</h6>
+        <div class="px-3 pt-3">
+          <ul class="location mb-0 p-0">
+            <li>
+              <div class="country" *ngIf="campaign?.influencer?.location">
+
+                <div class="location-info-container" *ngFor="let country of campaign?.influencer?.location">
+                  <img class="location-icon" height="25px" width="25px" [src]="country | countryFlag" />
+                  <p class="country-name">{{country | countryName}}</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [formGroup]="form">
+    <h4 class="fw-500 text-blue">Start Date</h4>
+    <div class="row py-3">
+      <div class="col-lg-5">
+        <div class="px-3 pt-3">
+          <ul class="location mb-0 p-0">
+            <li>
+              <div class="country w-100 px-2">
+                <img class="pointer" [owlDateTimeTrigger]="dateTime" src="assets/calender.png" />
+                <input class="d-none" formControlName="startDate" placeholder="8865 5858585" [owlDateTime]="dateTime"
+                  [min]="todayDate" value="todayDate" />
+                <p class="fs-16 fw-400 text-blue mb-0 pl-2">
+                  {{ f.startDate.value | date: "yyyy-MM-dd" }}
+                  &nbsp;&nbsp;&nbsp;
+                  <span class="text-aqua">{{
+                    f.startDate.value | date: "h:mm a"
+                    }}</span>
+                </p>
+                <owl-date-time #dateTime></owl-date-time>
+              </div>
+              <errors [control]="f.startDate" [isSubmit]="isSubmit"></errors>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="fw-500 text-blue">Campaigns duration</h4>
+    <div class="row py-3">
+      <div class="col-lg-5">
+        <div class="duration">
+          <p class="fs-16 fw-500 text-blue mb-0 pl-2 text-center">
+            <input type="number" class="form-control" formControlName="duration" />
+            Days
+          </p>
+          <errors [control]="f.duration" [isSubmit]="isSubmit"></errors>
+
+          <p class="text-blue1 text-center">
+            Until {{ durationDate | date: "fullDate" }}
+          </p>
+
+          <div class="px-3 pt-3">
+            <!-- <ngx-slider [(value)]="age" [(highValue)]="ageValue" [options]="ageoptions"></ngx-slider> -->
+
+            <ul class="price mb-0 p-0">
+              <li *ngFor="let d of durations" [ngClass]="f.duration.value === d ? 'active' : ''"
+                (click)="f.duration.setValue(d)">
+                <div>
+                  <p class="pt-2">{{ d }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pull-center">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        Submit Campaign
+      </button>
+    </div>
+  </div>
+
+  <!-- step 3  -->
+</div>

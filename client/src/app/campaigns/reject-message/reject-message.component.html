@@ -1,0 +1,25 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Rejection Reason</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <h6 class="text-center text-blue2">Rejection Message</h6>
+      <textarea *ngIf="!this.isView" name="" id="" cols="30" rows="10" class="w-100 border-0 rounded p-3"
+        [(ngModel)]="rejectMessage">
+      </textarea>
+
+      <textarea [readOnly]=true *ngIf="isView && this.message" name="" id="" cols="30" rows="10"
+        class="w-100 border-0 rounded p-3"> {{this.message}}
+                </textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button *ngIf="!this.isView" type="button" class="btn btn-danger" (click)="update()">Reject</button>
+  </div>
+</ng-template>

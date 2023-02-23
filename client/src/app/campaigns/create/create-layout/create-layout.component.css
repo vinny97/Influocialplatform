@@ -1,0 +1,70 @@
+.form-wizard .form-wizard-steps {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 600px;
+}
+
+.form-wizard .form-wizard-steps li {
+  width: 5px;
+  position: relative;
+  height: 150px;
+}
+
+.form-wizard .form-wizard-steps li::after {
+  background-color:  #3B5F99;
+  content: "";
+  /* height: 5px; */
+  left: 18px;
+  position: absolute;
+  right: 0;
+  top: 65%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 150px;
+  border: 0;
+}
+
+.form-wizard .form-wizard-steps li span {
+  background-color:  #3B5F99;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  text-align: center;
+  width: 40px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.form-wizard .form-wizard-steps li:last-child::after {
+  display: none;
+}
+
+.form-wizard .form-wizard-steps li.active span, .form-wizard .form-wizard-steps li.activated span {
+  background-color: #62EBA8;
+  color: #ffffff;
+}
+
+.form-wizard .form-wizard-steps li.active::after, .form-wizard .form-wizard-steps li.activated::after {
+  background-color: #62EBA8;
+  /* left: 50%; */
+  /* width: 50%; */
+  border-color: #62EBA8;
+}
+
+.form-wizard .form-wizard-steps li.activated::after {
+  width: 100%;
+  border-color: #62EBA8;
+}
+
+.form-wizard .form-wizard-steps li:last-child::after {
+  left: 0;
+}
+
+[ng-reflect-router-link-active]:focus{
+  outline: none;
+}

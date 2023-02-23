@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="!isType" class="col-md-1">
+      <div class="form-wizard">
+        <ul class="list-unstyled form-wizard-steps clearfix">
+          <li [ngClass]="{'active': step === 1}" (click)="onStepClick(1)"><span>1</span></li>
+          <li [ngClass]="{'active': step === 2}" (click)="onStepClick(2)"><span>2</span></li>
+          <li [ngClass]="{'active': step === 3}" (click)="onStepClick(3)"><span>3</span></li>
+          <li [ngClass]="{'active': step === 4}" (click)="onStepClick(4)"><span>4</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <div [ngClass]="isType ? 'col-md-12': 'col-md-11'" class="px-md-0">
+      <app-type [ngClass]="step === 0? 'd-block': 'd-none'" (next)="onNext($event)"></app-type>
+      <app-step1 *ngIf="step === 1" [ngClass]="step === 1? 'd-block': 'd-none'" [campaign]="campaign"
+        (next)="onNext($event)"></app-step1>
+      <app-step2 *ngIf="step === 2" [ngClass]="step === 2? 'd-block': 'd-none'" (next)="onNext($event)"
+        [campaign]="campaign"></app-step2>
+      <app-step3 [ngClass]="step === 3? 'd-block': 'd-none'" (next)="onNext($event)"></app-step3>
+      <app-step4 *ngIf="step === 4" [campaign]="campaign"></app-step4>
+    </div>
+  </div>
+</div>

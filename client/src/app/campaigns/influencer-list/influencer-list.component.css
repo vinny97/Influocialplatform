@@ -1,0 +1,98 @@
+.list{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  .list li {
+    padding-left: 20px;
+  }
+  .list li a{
+    font-weight: 500;
+    color: #242F57;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .list li a.active{
+    font-weight: 500;
+    color: #10DD79;
+    font-size: 18px;
+  }
+  .text-mute{
+    color: #535875;
+  }
+
+  .card{
+          /* background: url(/assets/img1.png); */
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+          border-radius: 10px;
+          margin-bottom: 20px;
+          border: 0;
+          height: 400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+
+      .btn-primary{
+        border-radius: 30px;
+        font-size: 16px !important;
+        font-weight: normal !important;
+      }
+      .img2{
+        background: url(/assets/img10.png);
+        background-repeat: no-repeat;
+          background-size: 100%;
+      }
+      .img3{
+        background: url(/assets/img6.png);
+        background-repeat: no-repeat;
+          background-size: 100%;
+      }
+      .img4{
+        background: url(/assets/img11.png);
+        background-repeat: no-repeat;
+          background-size: 100%;
+      }
+.categories-selector{
+  width: 200px;
+margin-left: 12px;
+}
+
+
+form.example input[type=text] {
+  padding: 4px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 80%;
+  background: none;
+  border-radius: 4px 0px 0px 4px;
+
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 5px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border:unset;
+    cursor: pointer;
+    border-radius: 0px 4px 4px 0px;
+
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}

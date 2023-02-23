@@ -1,0 +1,232 @@
+.card {
+  border-radius: 10px;
+  border: none;
+}
+.budget {
+  width: 100%;
+  height: 60px;
+  border: none;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  border-radius: 6px;
+}
+ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+li {
+  list-style: none;
+  margin-right: 5px;
+}
+li:last-child {
+  margin-right: 0px;
+}
+.gender {
+  height: 50px;
+  width: 70px;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: #20c274;
+}
+
+.stepper {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  height: 15px;
+  background-color: #3068ff;
+  border-radius: 9px;
+}
+.stepper li {
+  width: 20%;
+  margin: 0;
+}
+
+.stepper li:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.stepper li.active {
+  background-color: #62eba8;
+  border: 0px solid #62eba8;
+}
+.price li {
+  width: 20%;
+}
+.price li.active {
+  color: #62eba8;
+  font-weight: 600;
+}
+.stepper li div {
+  width: 15px;
+  height: 15px;
+  background-color: #f5faff;
+  border-radius: 100px;
+  border: 1px solid #3068ff;
+}
+.location {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.location li {
+  list-style: none;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.location li div {
+  height: 60px;
+  width: 130px;
+  background-color: white;
+  border: 1px solid #586aab;
+  border-radius: 10px;
+}
+.country {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.location-icon {
+  height: 30px !important;
+  width: 30px !important;
+  border-radius: 100% !important;
+}
+.location-icon img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.gender {
+  height: 50px;
+  width: 70px;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0px 5px 20px rgba(63, 63, 68, 5%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.gender.active {
+  border: 2px solid #3bfb9d;
+}
+
+.target {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+}
+.target li {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+.target li div {
+  height: 25px;
+  width: 50px;
+  border-radius: 10px;
+  border: 1px solid #586aab;
+  text-align: center;
+  line-height: 23px;
+}
+
+.target li div.active {
+  border: 1px solid #3bfb9d;
+}
+
+::ng-deep.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  background-color: none transparent;
+  border: none;
+  cursor: default;
+  border-radius: 10px;
+  padding: 0;
+  width: 100%;
+  height: 55px;
+}
+
+::ng-deep
+  .step3-sel.ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container {
+  height: 52px;
+  border-radius: 15px;
+}
+::ng-deep .step3-sel.ng-select.ng-select-single .ng-select-container {
+  height: 52px;
+}
+
+::ng-deep .step3-sel.ng-select .ng-select-container {
+  min-height: 52px;
+  border-radius: 10px;
+}
+
+.select-with-icon {
+  position: relative;
+}
+.select-with-icon img {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+}
+
+/* chech-box  */
+
+.form-check {
+  display: block;
+  position: relative;
+  padding: 0 6px;
+  margin: 10px 0 0;
+}
+
+.form-check input[type="radio"] {
+  display: none;
+}
+
+.form-check label:before {
+  content: " ";
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  margin: 0 5px 0 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 11px;
+  border: 2px solid #3068ff;
+  background-color: transparent;
+}
+
+.form-check input[type="radio"]:checked + label:after {
+  border-radius: 11px;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  content: " ";
+  display: block;
+  background: #62eba8;
+}
+._100k {
+  margin-left: 10px;
+}
+.ng-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 3px;
+  margin-left: 4px;
+}

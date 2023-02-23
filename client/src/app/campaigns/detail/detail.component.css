@@ -1,0 +1,25 @@
+.iphone{
+  background: linear-gradient(180deg, rgba(211, 225, 254, 0.25) 0%, rgba(211, 225, 254, 0) 100%);
+  box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  padding: 8px 40px;
+  }
+  .iphone1{
+    background: rgba(143, 214, 209, 0.44);
+    box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    padding: 8px 35px;
+    }
+
+    .highlighted {
+      background-color:  #62EBA8;
+    }
+.banner-img{
+  height: 60vh;
+  width: 100%;
+}
+.banner-img img{
+  height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
