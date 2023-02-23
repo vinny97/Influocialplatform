@@ -1,0 +1,13 @@
+<div class="main-card">
+  <h6 class="fs-18 text-blue fw-600 mb-3"> {{this.label}} </h6>
+  <div class="state-card">
+    <div class="row mx-0">
+      <div class="col-md-12">
+        <span *ngIf="this.showCurrency"> &#36;</span> {{this.cardValue }} <span *ngIf="this.showPercentage">%</span>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

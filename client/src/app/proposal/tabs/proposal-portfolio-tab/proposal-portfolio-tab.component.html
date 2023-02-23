@@ -1,0 +1,19 @@
+<div class="row mt-5">
+  <div class="card col-4" *ngFor="let portfolio of result">
+    <img
+      class="card-img-top"
+      [src]="portfolio?.image | image"
+      alt="Card image cap"
+      height="250px"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ portfolio?.name }}</h5>
+      <p class="card-text .height250">
+        {{ portfolio?.caption }}
+      </p>
+      <a [href]="portfolio?.url" class="btn btn-outline-primary" target="_blank"
+        ><i class="fab fa-instagram"></i
+      ></a>
+    </div>
+  </div>
+</div>

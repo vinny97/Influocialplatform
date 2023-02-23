@@ -1,0 +1,59 @@
+<no-content
+  *ngIf="!isLoader && (!result || result.length === 0); else posts"
+  [label]="'No Audience Data found!'"
+>
+</no-content>
+
+<ng-template #posts>
+  <div class="row align-items-center my-3 justify-content-center">
+    <div *ngIf="this.countries && this.countriesData" class="col-lg-6">
+      <h5 class="text-blue my-4">Audience Countries</h5>
+      <div>
+        <app-bar-chart
+          [labels]="this.countries"
+          [values]="this.countriesData"
+          [valuesLabel]="'Followers'"
+        >
+        </app-bar-chart>
+      </div>
+    </div>
+    <div *ngIf="this.cities && this.citiesData" class="col-lg-6">
+      <h5 class="text-blue my-4">Audience Cities</h5>
+      <div>
+        <app-bar-chart
+          [labels]="this.cities"
+          [values]="this.citiesData"
+          [valuesLabel]="'Followers'"
+        >
+        </app-bar-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-center my-3 justify-content-center">
+    <div class="col-lg-6" *ngIf="this.result && this.isAgeGroupCalculated">
+      <h5 class="text-blue my-4">Age Distribution</h5>
+      <div>
+        <app-pie-chart
+          [labels]="ageGroupLabels"
+          [values]="ageGroupCount"
+        ></app-pie-chart>
+      </div>
+    </div>
+
+    <div
+      class="col-lg-6"
+      *ngIf="
+        this.result && this.totalMale && this.totalFemale && this.totalUnknown
+      "
+    >
+      <h5 class="text-blue my-4">Gender Distribution</h5>
+      <div>
+        <app-pie-chart
+          [labels]="genderLabels"
+          [values]="[totalMale, totalFemale, totalUnknown]"
+        ></app-pie-chart>
+      </div>
+    </div>
+  </div>
+</ng-template>

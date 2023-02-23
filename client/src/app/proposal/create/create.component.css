@@ -1,0 +1,51 @@
+.list{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  .list li {
+    padding-left: 20px;
+  }
+  .list li a{
+    font-weight: 500;
+    color: #242F57;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .list li a.active{
+    font-weight: 500;
+    color: #10DD79;
+    font-size: 18px;
+  }
+  .text-mute{
+    color: #535875;
+  }
+  textarea:focus{
+    outline: none ;
+  }
+  
+  textarea::placeholder{
+      color: #46A8AE;
+  }
+  .card{
+          background: #E9F1F9;
+          border-radius: 12px;
+          margin-bottom: 20px;
+          border: 0;
+          height: 400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+  
+  input{
+    border: 0;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+  }
+  input:focus{
+    outline: none;
+  }
+  

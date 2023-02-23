@@ -1,0 +1,57 @@
+.bio p, .motivation p{
+    color: #987878;
+  }
+  .user-name .d-flex h6{
+  color: #987878;
+  }
+  .img-div{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    margin: 0 auto;
+  }
+  .img-div img{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  
+  .motivation p{
+    width: 50%;
+  }
+  .picsum-img-wrapper{
+    height: 400px;
+    width: 100%;
+  }
+  .picsum-img-wrapper img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  ngb-carousel:focus{
+    outline: none;
+  }
+  
+  @media only screen and (max-width: 1048px) {
+  .motivation p{
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+  }
+  
+
+  .c-p{
+    cursor: pointer;
+    }
+    
+    .info-icon{
+      position: absolute;
+      top: -10px;
+      right: 25px;
+      border-radius: 10px;
+      height: 23px;
+    }
+    
+  

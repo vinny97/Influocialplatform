@@ -1,0 +1,65 @@
+<div class="filter mt-5">
+  <ul class="list">
+    <li>
+      <a
+        href="javascript:void(0)"
+        [ngClass]="activeIndex === 1 ? 'active' : ''"
+        (click)="toggleClass(1)"
+        >Portfolio</a
+      >
+    </li>
+    <li>
+      <a
+        href="javascript:void(0)"
+        [ngClass]="activeIndex === 2 ? 'active' : ''"
+        (click)="toggleClass(2)"
+        >Audience</a
+      >
+    </li>
+    <li>
+      <a
+        href="javascript:void(0)"
+        [ngClass]="activeIndex === 3 ? 'active' : ''"
+        (click)="toggleClass(3)"
+        >Social Metrics</a
+      >
+    </li>
+    <li>
+      <a
+        href="javascript:void(0)"
+        [ngClass]="activeIndex === 4 ? 'active' : ''"
+        (click)="toggleClass(4)"
+        >Posts</a
+      >
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="longLiveToken !== null && pageID !== null">
+  <div [ngClass]="activeIndex === 1 ? 'd-flex' : 'd-none'">
+    <app-proposal-portfolio-tab
+      [longLiveToken]="longLiveToken"
+      [pageID]="pageID"
+      [influencerId]="influencerId"
+    ></app-proposal-portfolio-tab>
+  </div>
+  <div [ngClass]="activeIndex === 2 ? 'd-block' : 'd-none'">
+    <app-proposal-audience-tab
+      [longLiveToken]="longLiveToken"
+      [pageID]="pageID"
+    ></app-proposal-audience-tab>
+  </div>
+  <div [ngClass]="activeIndex === 3 ? 'd-flex' : 'd-none'">
+    <app-proposal-metrics-tab
+      [longLiveToken]="longLiveToken"
+      [pageID]="pageID"
+    ></app-proposal-metrics-tab>
+  </div>
+  <div [ngClass]="activeIndex === 4 ? 'd-flex' : 'd-none'">
+    <app-proposal-posts-tab
+      [longLiveToken]="longLiveToken"
+      [pageID]="pageID"
+    ></app-proposal-posts-tab>
+  </div>
+</div>
+<app-loader *ngIf="isLoader"></app-loader>

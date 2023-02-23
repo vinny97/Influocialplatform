@@ -1,0 +1,16 @@
+<div *ngIf="isView">
+  <no-content
+    *ngIf="!isLoader && (!result || result.length === 0); else posts"
+    [label]="'No Posts!'"
+  >
+  </no-content>
+
+  <app-loader *ngIf="isLoader"></app-loader>
+  <ng-template #posts>
+    <div class="row mt-5">
+      <div class="col-lg-3 col-6 mb-3 mb-lg-5" *ngFor="let post of result">
+        <app-insta-post [post]="post"></app-insta-post>
+      </div>
+    </div>
+  </ng-template>
+</div>

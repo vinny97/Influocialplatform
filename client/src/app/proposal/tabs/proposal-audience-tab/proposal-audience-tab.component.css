@@ -1,0 +1,10 @@
+.chart{
+  height: 600px;
+  width: 100%;
+}
+.chart img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+

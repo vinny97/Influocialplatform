@@ -1,0 +1,185 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list">
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(1)"
+            [ngClass]="{ active: type === 1 }"
+            >Proposals</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(2)"
+            [ngClass]="{ active: type === 2 }"
+            >Rebid</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(3)"
+            [ngClass]="{ active: type === 3 }"
+            >Approved</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(4)"
+            [ngClass]="{ active: type === 4 }"
+            >Declined</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(5)"
+            [ngClass]="{ active: type === 5 }"
+            >Published</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(6)"
+            [ngClass]="{ active: type === 6 }"
+            >Favorites</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(7)"
+            [ngClass]="{ active: type === 7 }"
+            >Outright</a
+          >
+        </li>
+      </ul>
+      <h3 class="fs-25 fw-500 text-blue py-3" *ngIf="type === 6; else out">
+        Favorite Proposals
+      </h3>
+      <ng-template #out>
+        <h3 class="fs-25 fw-500 text-blue py-3" *ngIf="type === 7; else p">
+          Outright Proposals
+        </h3>
+      </ng-template>
+      <ng-template #p>
+        <h3 class="fs-25 fw-500 text-blue py-3">Proposals</h3>
+      </ng-template>
+    </div>
+  </div>
+
+  <div *ngIf="type === 7" class="row justify-content-end">
+    <div class="col-md-3 mb-3">
+      <ng-select
+        [items]="outright"
+        [(ngModel)]="outrightStatus"
+        [clearable]="false"
+        (change)="getAll()"
+        placeholder="Select outright status"
+        bindLabel="name"
+        bindValue="id"
+      >
+      </ng-select>
+    </div>
+  </div>
+  <no-content
+    *ngIf="!isLoader && (!result || result.docs.length === 0)"
+    [label]="'You have no proposals here!'"
+  >
+  </no-content>
+  <div class="row mt-4">
+    <div *ngFor="let proposal of this.result?.docs" class="col-lg-6">
+      <div class="card text-center">
+        <div class="img-div">
+          <img [src]="proposal?.influencer?.image | image" />
+        </div>
+        <h6 class="text-blue fs-16 fw-500">
+          {{ proposal?.influencer | name }}
+        </h6>
+
+        <!-- instagram stats -->
+        <app-proposal-card-stats
+          [pageID]="proposal?.influencer?.instagram?.pageId"
+          [longLiveToken]="proposal?.influencer?.instagram?.longLiveAccessToken"
+        >
+          [createdBy]="proposal?.createdBy" ></app-proposal-card-stats
+        >
+        <!-- <div *ngIf="proposal?.influencer?.instagram && proposal?.influencer?.instagram?.userName">
+
+          <app-proposal-card-stats [userName]="proposal?.influencer?.instagram?.userName"></app-proposal-card-stats>
+
+        </div> -->
+
+        <h6 class="text-aqua fw-600 fs-20 py-2">
+          <span class="text-blue fw-600 fs-20 py-2">Proposal Fee:</span>
+          {{ proposal.fee | currency }}
+        </h6>
+
+        <h6 *ngIf="proposal?.outrightFee" class="text-aqua fw-600 fs-20 py-2">
+          <span class="text-blue fw-600 fs-20 py-2">Outright Fee:</span>
+          {{ proposal?.outrightFee | currency }}
+        </h6>
+
+        <div class="view pb-3 d-flex align-items-center justify-content-center">
+          <img
+            *ngIf="proposal?.status === 1"
+            src="assets/accept.png"
+            height="30"
+            class="mr-4"
+            (click)="
+              acceptProposal(proposal?._id, proposal?.fee, proposal?.campaign)
+            "
+          />
+          <button
+            class="btn btn-green green-shadow"
+            (click)="viewProposal(proposal)"
+          >
+            {{ proposal | brandProposalButton: this.type }}
+          </button>
+          <app-decline-proposal
+            [type]="1"
+            [status]="proposal?.status"
+            [proposalID]="proposal?._id"
+            (onDeclineProposal)="onDecline()"
+          >
+          </app-decline-proposal>
+          <app-paypal
+            (payPalResponse)="this.getAll()"
+            [proposalID]="proposal?._id"
+          ></app-paypal>
+          <app-accept-outright
+            [proposalID]="proposal?._id"
+            [proposal]="proposal"
+            [outright]
+            (onOutrightUpdate)="outRightUpdate($event)"
+          ></app-accept-outright>
+          <app-accept-proposal
+            [proposalID]="proposal?._id"
+            (onSubmit)="onAccept($event)"
+          ></app-accept-proposal>
+        </div>
+        <app-proposal-submission-view
+          [fee]="proposal?.fee"
+          [motivation]="proposal?.motivation"
+          [contentPost]="proposal?.contentPost[0]"
+          [contentCaption]="proposal?.contentCaption"
+        ></app-proposal-submission-view>
+      </div>
+    </div>
+    <app-loader *ngIf="isLoader"></app-loader>
+  </div>
+  <!-- pagination -->
+  <app-pagination
+    *ngIf="result?.totalDocs > limit"
+    (onPageChange)="onClickPage($event)"
+    [page]="this.page"
+    [limit]="this.limit"
+    [totalDocs]="result?.totalDocs"
+  >
+  </app-pagination>
+</div>

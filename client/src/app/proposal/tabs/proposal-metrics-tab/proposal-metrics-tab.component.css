@@ -1,0 +1,21 @@
+
+.state {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .state li{
+    width: 25%;
+    margin-bottom: 20px;
+  }
+  
+  .card{
+    border-radius: 12px;
+  }
+  @media (max-width: 768px){
+    .state li{
+      width: 50%;
+    }
+  }
+  

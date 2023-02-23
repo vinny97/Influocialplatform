@@ -1,0 +1,126 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="bio">
+            <h6>Bio</h6>
+            <p>
+              {{ instaProfileInfo?.biography }}
+            </p>
+          </div>
+        </div>
+        <!-- Error - Writted by Umar-->
+        <div class="col-md-4">
+          <div class="img-div">
+            <img [src]="result?.influencer?.image | image" />
+          </div>
+          <div
+            class="
+              functions
+              d-flex
+              align-items-center
+              justify-content-center
+              mt-3
+            "
+          >
+            <div class="px-lg-5 px-2 text-center">
+              <h6 class="fs-22">{{ result?.influencer | name }}</h6>
+              <div class="ratting">
+                <span
+                  ><i class="fas fa-star fa-2x mr-1"></i
+                  ><i class="fas fa-star fa-2x mr-1"></i
+                  ><i class="fas fa-star fa-2x mr-1"></i>
+                  <i class="fas fa-star fa-2x mr-1"></i
+                  ><i class="fas fa-star fa-2x"></i
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <app-proposal-card-stats
+            *ngIf="instaProfileInfo"
+            [instaProfileInfo]="instaProfileInfo"
+          ></app-proposal-card-stats>
+        </div>
+      </div>
+
+      <div
+        class="functions d-flex align-items-center justify-content-center my-3"
+      >
+        <img
+          *ngIf="result?.status === 1"
+          src="assets/accept.png"
+          height="50"
+          class="pr-lg-5 pr-2 c-p"
+          (click)="acceptProposal()"
+        />
+        <app-favorite-toggle
+          [proposalID]="result?._id"
+          [isFavorite]="result?.isFavorite"
+        ></app-favorite-toggle>
+        <h6 class="text-aqua fw-600 fs-22 mb-0 px-lg-5 px-2">
+          {{ result?.fee | currency }}
+        </h6>
+        <app-add-to-chat [userID]="result?.influencer?._id"></app-add-to-chat>
+
+        <app-decline-proposal
+          [type]="2"
+          [proposalID]="result?._id"
+          [status]="result?.status"
+          (onDeclineProposal)="onDecline($event)"
+        >
+        </app-decline-proposal>
+      </div>
+      <div class="motivation mt-lg-4 mt-2">
+        <h6 class="fs-18 fw-700 text-blue">Motivation</h6>
+        <p class="fs-16 text-blue fw-500">
+          {{ result?.motivation }}
+        </p>
+      </div>
+      <app-allow-rebid
+        *ngIf="result?.status == 1"
+        [proposalID]="this.proposalID"
+        (onAllowingRebid)="this.getData()"
+      ></app-allow-rebid>
+      <div class="interest mt-lg-4 mt-2">
+        <h6 class="fs-18 fw-700 text-blue">Interests</h6>
+        <ul>
+          <li>
+            <div class="dot"></div>
+            Travel
+          </li>
+          <li>
+            <div class="dot"></div>
+            Fashion
+          </li>
+          <li>
+            <div class="dot"></div>
+            Music
+          </li>
+          <li>
+            <div class="dot"></div>
+            Fitness
+          </li>
+        </ul>
+      </div>
+
+      <!-- Instagram's audience and metrics tabs -->
+      <div *ngIf="result?.influencer._id">
+        <app-insta-tabs [createdBy]="result?.influencer._id"></app-insta-tabs>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Accept Proposal Modal -->
+<app-accept-proposal
+  [proposalID]="proposalID"
+  (onSubmit)="onAccept($event)"
+></app-accept-proposal>
+<app-loader *ngIf="isLoader"></app-loader>
+<app-paypal
+  (payPalResponse)="updateProposal()"
+  [proposalID]="this.proposalID"
+></app-paypal>

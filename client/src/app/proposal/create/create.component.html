@@ -1,0 +1,53 @@
+<div class="container" [formGroup]="form">
+  <div class="row mt-5 justify-content-center">
+    <!-- <div class="col-lg-6">
+        <h6 class="text-center text-blue2">Post</h6>
+        <div class="card text-center">
+          <div class="">
+            <img src="assets/added.png" height="200" alt="">
+          </div>
+      </div>
+      </div> -->
+
+    <!-- Motivation -->
+    <div class="col-md-10 mb-4">
+      <h6 class="text-center text-blue2">Motivation</h6>
+      <textarea
+        formControlName="motivation"
+        placeholder="Tell the brand why your interested in applying to this campaign"
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        style="background-color: rgb(219, 226, 226)"
+        class="w-100 border-0 rounded p-3"
+      >
+      </textarea>
+      <errors [control]="f.motivation" [isSubmit]="isSubmit"></errors>
+    </div>
+
+    <!-- Fee -->
+    <div class="col-md-5">
+      <h6 class="text-center text-blue2">Fee</h6>
+      <input
+        placeholder="$"
+        type="text"
+        formControlName="fee"
+        appNumericOnly
+        style="background-color: rgb(219, 226, 226)"
+      />
+      <errors [control]="f.fee" [isSubmit]="isSubmit"></errors>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-md-12 my-4 text-center">
+      <button
+        class="btn btn-green green-shadow px-5"
+        type="submit"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

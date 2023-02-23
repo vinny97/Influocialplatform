@@ -1,0 +1,161 @@
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="fs-14 fw-400 text-muted my-3">My Profile</h6>
+      </div>
+     
+     <!-- Commented on 13 oct 2022 -->
+      <!-- <div class="col-md-4">
+        <upload-file
+          *ngxPermissionsOnly="[2]"
+          #upload
+          (upload)="onImageUpload($event)"
+        ></upload-file>
+
+        <div
+          *ngxPermissionsOnly="[2]"
+          class="profile-img mb-3"
+          (click)="upload.click()"
+        >
+          <img [src]="f.image.value | image" alt="" />
+        </div>
+      </div> -->
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="input" class="">First Name</label>
+          <input type="text" class="form-control" formControlName="firstName" />
+          <errors [control]="f.firstName" [isSubmit]="isSubmit"></errors>
+        </div>
+        <div class="form-group">
+          <label for="input" class="">Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName" />
+          <errors [control]="f.lastName" [isSubmit]="isSubmit"></errors>
+        </div>
+
+        <div class="form-group" *ngxPermissionsOnly!="[1]">
+          <label for="input" class="">Email Address</label>
+          <input type="text" class="form-control" formControlName="email" />
+          <errors [control]="f.email" [isSubmit]="isSubmit"></errors>
+        </div>
+        <div class="form-group">
+          <label for="input" class="">Role</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="form.controls['role'].value | RolesPipe"
+            formControlName="role"
+            readonly
+          />
+          <errors [control]="f.role" [isSubmit]="isSubmit"></errors>
+        </div>
+        <div class="form-group" *ngxPermissionsOnly="[2, 3, 4]">
+          <label for="input" class="">Contact</label>
+          <input
+            type="text"
+            class="form-control"
+            appNumericOnly
+            formControlName="contact"
+          />
+          <errors [control]="f.contact" [isSubmit]="isSubmit"> </errors>
+        </div>
+        <div *ngxPermissionsOnly="[2]" class="form-group">
+          <label for="input" class="">Gender</label>
+          <ng-select
+            [items]="genders"
+            bindLabel="name"
+            class="profile"
+            bindValue="id"
+            formControlName="gender"
+          >
+          </ng-select>
+          <errors [control]="f.gender" [isSubmit]="isSubmit"> </errors>
+        </div>
+
+        <div *ngxPermissionsOnly="[2]" class="form-group">
+          <label for="input" class="">Date of Birth</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              formControlName="dob"
+              ngbDatepicker
+              [maxDate]="maxDate"
+              [minDate]="minDate"
+              #d="ngbDatepicker"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary fas fa-calendar"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+            </div>
+          </div>
+          <errors [control]="f.dob" [isSubmit]="isSubmit"> </errors>
+        </div>
+
+        <div *ngxPermissionsOnly="[2]" [formGroup]="f.instagram">
+          <div class="form-group">
+            <label for="input" class="">Instagram User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="userName"
+            />
+            <errors [control]="instagram.userName" [isSubmit]="isSubmit">
+            </errors>
+          </div>
+        </div>
+
+        <div *ngxPermissionsOnly="[3, 4]" class="form-group">
+          <label for="input" class="">Company Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder=""
+            formControlName="companyName"
+          />
+          <errors [control]="f.companyName" [isSubmit]="isSubmit"> </errors>
+        </div>
+
+        <div *ngxPermissionsOnly="[3, 4]" class="form-group">
+          <label for="input" class="">Company Size</label>
+          <ng-select
+            [items]="company_size"
+            class="profile"
+            bindLabel="name"
+            bindValue="id"
+            formControlName="companySize"
+          >
+          </ng-select>
+          <errors [control]="f.companySize" [isSubmit]="isSubmit"> </errors>
+        </div>
+        <div class="form-row justify-content-center mt-5">
+          <button
+            class="btn btn-primary"
+            (click)="onSubmit()"
+            type="submit"
+            [disabled]="!this.form.dirty"
+          >
+            Update Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showInstagramData" class="row mt-4">
+  <div class="card text-center">
+    <app-proposal-card-stats
+      [userName]="instagram.userName.value"
+    ></app-proposal-card-stats>
+  </div>
+</div>
+
+<!-- <button class="btn btn-primary" (click)="linkFB()">Link Profile</button>
+<button class="btn btn-primary" (click)="logoutFB()">Logout</button> -->

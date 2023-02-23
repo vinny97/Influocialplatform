@@ -1,0 +1,38 @@
+<div *ngIf="post">
+  <a href="javascript:void(0)" (click)="viewPost(post?.permalink)">
+    <video
+      *ngIf="post?.media_type === 'VIDEO'; else picture"
+      id="my_video_1"
+      class="pictures"
+      controls
+      preload="none"
+    >
+      <source [src]="post?.media_url" type="video/mp4" />
+    </video>
+  </a>
+  <ng-template #picture>
+    <a href="javascript:void(0)" (click)="viewPost(post?.permalink)">
+      <div class="pictures">
+        <img [src]="post?.media_url" />
+      </div>
+    </a>
+  </ng-template>
+
+  <!-- Likes and Comments -->
+  <div class="card-footer border-0 bg-transparent">
+    <div class="d-flex">
+      <div class="text-primary">
+        <i class="fas fa-heart fa-2x text-danger"></i>
+        <small class="ml-2 font-weight-bold">
+          {{ post?.like_count | shortNumber }}
+        </small>
+      </div>
+      <div aria-controls="collapseExample" class="text-dark ml-4">
+        <i class="far fa-lg fa-comment-alt"></i>
+        <small class="ml-2 font-weight-bold">{{
+          post?.comments_count | shortNumber
+        }}</small>
+      </div>
+    </div>
+  </div>
+</div>

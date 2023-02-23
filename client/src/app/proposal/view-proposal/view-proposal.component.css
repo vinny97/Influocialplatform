@@ -1,0 +1,63 @@
+.bio p, .motivation p{
+    color: #987878;
+}
+.user-name .d-flex h6{
+  color: #987878;
+}
+.img-div{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    margin: 0 auto;
+}
+.img-div img{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.motivation p{
+    width: 50%;
+}
+.interest ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.interest ul li{
+  background: rgba(237, 225, 225, 0.7);
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  color:  #535875;
+}
+.interest ul li .dot{
+  height: 5px;
+  width: 5px;
+  border-radius: 100px;
+  background-color: black;
+  margin-right: 15px;
+}
+.fa-heart, .fa-comment-dots{
+  cursor: pointer;
+}
+
+
+
+.c-p{
+  cursor: pointer;
+}
+::ng-deep .close:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1048px) {
+  .motivation p{
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+}
+

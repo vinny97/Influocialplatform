@@ -1,0 +1,82 @@
+
+.profile-img{
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 100%;
+  border: 1px solid;
+}
+.profile-img img{
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: contain;
+}
+label{
+  font-weight: 500;
+}
+input{
+  border: 0 !important;
+  border-bottom: 1px solid black !important;
+  border-radius: 0;
+  background-color: transparent;
+}
+input:focus{
+  border: 0 !important;
+  border-bottom: 1px solid black !important;
+  background-color: transparent;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .profile.ng-select.ng-select-single .ng-select-container{
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+
+}
+::ng-deep .profile.ng-select.ng-select-single .ng-select-container .ng-value-container{
+  height: 52px;
+  border-radius: 15px;
+  background-color: transparent;
+}
+::ng-deep .profile.ng-select.ng-select-single .ng-select-container {
+  height: 52px;
+}
+
+::ng-deep .profile.ng-select .ng-select-container {
+  min-height: 52px;
+  border-radius: 10px;
+}
+
+::ng-deep .step3-sel.ng-select.ng-select-single .ng-select-container .ng-value-container{
+  height: 52px;
+  border-radius: 15px;
+}
+::ng-deep .step3-sel.ng-select.ng-select-single .ng-select-container {
+  height: 52px;
+}
+
+::ng-deep .step3-sel.ng-select .ng-select-container {
+  min-height: 52px;
+  border-radius: 10px;
+}
+
+
+.select-with-icon{
+  position: relative;
+}
+.select-with-icon img{
+  position: absolute;
+  top: 25px;
+  right: 35px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(211, 225, 254, 0.25) 0%, rgba(134, 174, 253, 0.25) 100%), #FFFFFF;
+  box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 0;
+}

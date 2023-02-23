@@ -1,0 +1,75 @@
+<div class="container" id="container">
+  <div class="form-container sign-in-container">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Post Name"
+          formControlName="name"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3"
+            >https://instagram.com/</span
+          >
+        </div>
+        <input
+          type="url"
+          class="form-control"
+          placeholder="https://instagram.com"
+          pattern="https://.*"
+          id="basic-url"
+          aria-describedby="basic-addon3"
+          formControlName="url"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1 " class="text-left"
+          >Write something about the brand you collaborated for this post</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          formControlName="caption"
+        ></textarea>
+      </div>
+      <img [src]="f.image.value" height="100px" alt="" />
+      <input
+        type="file"
+        class="d-none"
+        (click)="$event.target.value = null"
+        (change)="fileChangeEvent($event)"
+        accept="image/jpg,image/jpeg"
+        ng2FileSelect
+        [uploader]="uploader"
+        #upload
+      />
+      <button class="btn btn-green" (click)="upload.click()">
+        Image <i class="fas fa-plus"></i>
+      </button>
+      <small>Paste a valid URL otherwise </small>
+      <button class="btn btn-green" (click)="uploadImage()">Create</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Influencer!</h1>
+        <p>
+          Upload a picture proof of your highly engaged post on
+          <a
+            class="text-white"
+            href="https://www.instagram.com/"
+            target="_blank"
+            ><i>Instagram</i></a
+          >.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

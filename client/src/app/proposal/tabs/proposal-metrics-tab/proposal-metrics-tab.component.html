@@ -1,0 +1,45 @@
+<div class="row mt-5">
+  <div class="col-md-12">
+    <ul class="state">
+
+      <li>
+        <app-metrics-card [label]="'Reach'" [cardValue]=this.reach|shortNumber></app-metrics-card>
+      </li>
+      <li>
+        <app-metrics-card [label]="'Average Reach'" [cardValue]=this.averageReach|shortNumber></app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Reach(%)'" [showPercentage]=true [cardValue]="this.averageReachPercentage">
+        </app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Impressions'" [cardValue]=impressions|shortNumber></app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Average Impressions'" [cardValue]=this.averageImpressions|shortNumber>
+        </app-metrics-card>
+      </li>
+
+      <li *ngIf="this.engagement">
+        <app-metrics-card [label]="'Average Engagement'" [cardValue]=this.engagement></app-metrics-card>
+      </li>
+
+      <li *ngIf="this.totalLikesComments">
+        <app-metrics-card [label]="'Engagement(%)'" [showPercentage]=true [cardValue]=this.engagementPercentage>
+        </app-metrics-card>
+      </li>
+
+    </ul>
+  </div>
+
+
+
+</div>
+
+<app-proposal-card-stats [userName]="'influocial'" [isView]=false (onRequestDone)='onBasicData($event)'>
+</app-proposal-card-stats>
+
+<app-proposal-posts-tab [isView]=false (onRequestDone)='onEngagementDone($event)'></app-proposal-posts-tab>

@@ -1,0 +1,30 @@
+.card{
+  background: #E9F1F9;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 0;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card2{
+  background-image: linear-gradient(to bottom, rgba(211,225,254,25%), rgba(134,174,254,25%));
+  border: none;
+  border-radius: 10px;
+  height: 300px;
+  padding: 20px;
+}
+.user{
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+}
+.user img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.c-p{
+  cursor: pointer;
+}

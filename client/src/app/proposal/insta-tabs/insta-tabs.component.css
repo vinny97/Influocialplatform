@@ -1,0 +1,25 @@
+.list{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  .list li:first-child {
+    padding-left: 0px;
+  }
+  
+  .list li {
+    padding-left: 50px;
+  }
+  .list li a{
+    font-weight: 500;
+    color: #0F1222;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .list li a.active{
+    font-weight: 500;
+    color: #10DD79;
+    font-size: 18px;
+    border-bottom: 5px solid #10DD79;
+  }
