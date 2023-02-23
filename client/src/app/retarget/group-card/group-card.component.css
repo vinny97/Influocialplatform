@@ -1,0 +1,34 @@
+.group{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin: 30px;
+  }
+  .view img{
+    cursor: pointer;
+  }
+  .text-mute{
+    color: #535875;
+  }
+  
+  .card{
+          background: linear-gradient(180deg, rgba(211, 225, 254, 0.25) 0%, rgba(134, 174, 253, 0.25) 100%), #FFFFFF;
+          box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+          border-radius: 10px;
+          margin-bottom: 20px;
+          border: 0;
+          position: relative;
+      }
+  .img-div{
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+  }
+  .img-div img{
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+      object-fit: cover;
+  }
+  
+  

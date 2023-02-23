@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="text-right"><a href="javascript:void(0)" (click)='newGroup()' class="btn btn-primary text-white">Create
+      Group</a>
+  </div>
+
+
+  <div class="row">
+
+    <div *ngFor="let collab of collaborations" class="col-lg-6">
+      <app-member-view [member]="collab" [type]=1 (onSuccess)="getCollaborations()"></app-member-view>
+    </div>
+  </div>
+
+  <!-- pagination -->
+  <app-pagination *ngIf="result?.totalDocs > limit" (onPageChange)="onClickPage($event)" [page]='this.page'
+    [limit]='this.limit' [totalDocs]='result?.totalDocs'> </app-pagination>
+</div>
+
+<app-create-group></app-create-group>

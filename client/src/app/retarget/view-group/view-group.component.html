@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="text-right"><a href="javascript:void(0)" (click)='addMembers()' class="btn btn-primary text-white">Add
+          Members</a>
+      </div>
+      <h3 class="fs-25 fw-500 text-blue py-3"> {{result?.title}} </h3>
+      <no-content *ngIf="!result ||!result?.members ||  result?.members.length == 0; else m"
+        [label]="'You have no members yet!'"></no-content>
+    </div>
+
+    <ng-template #m>
+      <div *ngFor="let member of result?.members" class="col-lg-6">
+        <app-member-view [member]="member" [type]=2 [groupID]="result?._id" (onDelete)='onMemberDeleted($event)'>
+        </app-member-view>
+      </div>
+    </ng-template>
+
+  </div>
+
+</div>

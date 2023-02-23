@@ -1,0 +1,12 @@
+.corner-btn .btn{
+    height: 45px;
+    width: 45px;
+    line-height: 1px;
+    text-align: center;
+    padding: 0;
+  }
+  .corner-btn{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }

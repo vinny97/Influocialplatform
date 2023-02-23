@@ -1,0 +1,20 @@
+<div class="card text-center pb-5">
+  <div class="group" *ngIf="group?.members && group?.members?.length === 0; else memberImages">
+    <h6> No member yet</h6>
+  </div>
+  <ng-template #memberImages>
+    <div class="group">
+      <div class="img-div" *ngFor="let member of group?.members.slice(0,4)">
+        <img [src]="member?.image | image">
+      </div>
+    </div>
+  </ng-template>
+
+  <h3 class="text-blue fs-22 fw-500 text-center"> {{group?.title}} </h3>
+  <div class="w-50 mx-auto py-lg-5 py-4 text-left">
+    {{group?.description}}
+  </div>
+  <div class="pb-2 text-center">
+    <button class="btn btn-green px-lg-5 mb-0 green-shadow" (click)='viewGroup()'>View Group</button>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="card text-center pb-5 c-p" routerLink="/proposal/23">
+  <div class="img-div">
+    <img [src]="member?.image | image">
+  </div>
+  <h6 class="text-blue fs-16 fw-500 c-p" routerLink="/proposal/23"><img src="assets/insta.png" height="30" class="mr-3">
+    @ {{member?.instagramInfo?.username}} </h6>
+  <div class="social d-flex align-items-center justify-content-center mb-lg-4 mb-3 px-3 px-lg-4">
+    <div class="text-left">
+      <div *ngIf="member?.instagramInfo?.followers_count"><span class="text-mute">Followers:</span>
+        {{member?.instagramInfo?.followers_count}}</div>
+
+      <div><span class="text-mute">Rated:</span> {{member?.rating
+        || 'Not rated yet'}}
+      </div>
+      <div *ngIf="member?.proposalAccepted"><span class="text-mute">Proposal Accepted:</span>
+        {{member?.proposalAccepted | date}}</div>
+      <div *ngIf="member?.contentSubmitted"><span class="text-mute">Content Submitted:</span>
+        {{member?.contentSubmitted | date}}</div>
+      <div *ngIf="member?.instagramInfo?.totalLikes"><span class="text-mute">Likes:</span>
+        {{member?.instagramInfo?.totalLikes || 0}}</div>
+      <div><span class="text-mute">Posts: </span>{{member?.instagramInfo?.media_count || 0}}</div>
+      <div><span class="text-mute" *ngIf="member?.proposalSubmittion">Published: </span>{{member?.hasPublished?
+        'Yes':'Not yet'}}</div>
+    </div>
+    <div class="ml-auto text-right">
+      <!-- <div><span class="text-mute">Eng. Rate: </span> 9.2%</div> -->
+
+      <div><span class="text-mute" *ngIf="member?.proposalSubmittion">Proposal
+          Submitted:</span>{{member?.proposalSubmittion | date}}</div>
+
+      <div><span class="text-mute" *ngIf="member?.proposalSubmittion">Proposal
+          Accepted:</span>{{member?.proposalAccepted | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.proposalRejected">Proposal
+          Rejected:</span>{{member?.proposalRejected | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.contentSubmitted">Content
+          Submitted:</span>{{member?.contentSubmitted | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.contentApproved">Content Approved:</span>{{member?.contentApproved
+        | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.contentPublished">Content
+          Published:</span>{{member?.contentPublished | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.outrightRequested">Outright
+          Requested:</span>{{member?.outrightRequested | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.outrightRequestAccepted">Outright Request
+          Accepted:</span>{{member?.outrightRequestAccepted | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.outrightBidApproved">Outright Bid
+          Approved:</span>{{member?.outrightBidApproved | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.outrightBidRejected">Outright Bid
+          Rejected:</span>{{member?.outrightBidRejected | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.publishedAt">Published At:</span>{{member?.publishedAt | date}}</div>
+      <div><span class="text-mute" *ngIf="member?.publishedAt">Published At:</span>{{member?.publishedAt | date}}</div>
+    </div>
+
+    <div *ngIf="type === 1" class="corner-btn">
+      <button class="btn btn-green green-shadow mr-3" (click)='addMember(member?._id)'><i
+          class="fas fa-plus"></i></button>
+      <button class="btn btn-green green-shadow" (click)="open()" *ngIf="!member?.hasRated"><i class="fa-solid fa-star"
+          ngbTooltip="Rating"></i></button>
+
+    </div>
+
+
+    <app-remove-member *ngIf="type ===2" [groupID]="this.groupID" [memberID]="member?._id"
+      (onMemberRemoved)="memberRemoved($event)"></app-remove-member>
+
+    <!-- <div class="corner-btn" ngbDropdown>
+    <button class="btn btn-green green-shadow" ngbDropdownToggle><i class="fas fa-plus"></i></button>
+    <div class="dropdown-menu" ngbDropdownMfenu>
+      <button ngbDropdownItem><i class="fas fa-plus mr-1"></i> Create New Group</button>
+  
+    </div>
+  </div> -->
+  </div>
+
+  <app-add-group-member></app-add-group-member>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">How was your interaction</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ngb-rating [(rate)]="rating" [max]="5"></ngb-rating>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="rate()">Rate</button>
+    </div>
+  </ng-template>

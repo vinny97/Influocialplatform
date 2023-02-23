@@ -1,0 +1,66 @@
+
+.view img{
+    cursor: pointer;
+  }
+  .text-mute{
+    color: #535875;
+  }
+  
+  .card{
+          background: linear-gradient(180deg, rgba(211, 225, 254, 0.25) 0%, rgba(134, 174, 253, 0.25) 100%), #FFFFFF;
+          box-shadow: 0px 7.28571px 14.5714px rgba(0, 0, 0, 0.02);
+          border-radius: 10px;
+          margin-bottom: 20px;
+          border: 0;
+          position: relative;
+      }
+  .img-div{
+      margin: 20px auto;
+      height: 150px;
+      width: 150px;
+      border-radius: 100%;
+  }
+  .img-div img{
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+      object-fit: cover;
+  }
+  .corner-btn .btn{
+    height: 45px;
+    width: 45px;
+    line-height: 1px;
+    text-align: center;
+    padding: 0;
+  }
+  .corner-btn{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+  .dropdown-toggle::after {
+    content: none;
+  }
+  .dropdown-menu{
+    background: #FCF6F6;
+    border-radius: 10px;
+    border: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .dropdown-item{
+    border-bottom: 1px solid;
+    padding: 8px 20px;
+  }
+  .dropdown-item:last-child{
+    border-bottom: 1px solid;
+  }
+  .btn-primary{
+    border-radius: 30px;
+    font-size: 16px !important;
+    font-weight: normal !important;
+  }
+  .c-p{
+    cursor: pointer;
+  }
+  
