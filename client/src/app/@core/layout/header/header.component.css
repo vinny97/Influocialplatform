@@ -1,0 +1,121 @@
+.navbar-brand img {
+  height: 2.7rem;
+  /* width: 69%; */
+  /* display: block; */
+}
+.navbar-dark {
+  background: white !important;
+  color: black;
+  border-bottom: 1px solid grey;
+}
+
+.header-bar {
+  background-color: #3068ff;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+.text-aqua-green {
+  color: #43ffa3;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.profile-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 3px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(64, 255, 255, 60%),
+    rgba(11, 188, 102, 60%)
+  );
+  margin-right: 5px;
+}
+.profile-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* .box{
+  position: absolute;
+  left: 40%;
+  top: 2px;
+} */
+.notification {
+  border-radius: 14px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(64, 255, 255, 80%),
+    rgba(11, 188, 102, 80%)
+  );
+  text-align: center !important;
+}
+.shadow {
+  box-shadow: 0px 0px 20px rgba(18, 255, 140, 80%) !important;
+}
+.shadow1 {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%) !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+.dropdown-menu {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 0;
+  padding: 0;
+  text-align: center;
+}
+.dropdown-item {
+  border-bottom: 1px solid;
+  padding: 8px 20px;
+}
+.dropdown-item:last-child {
+  border-bottom: 0px solid;
+}
+.c-p {
+  cursor: pointer;
+}
+
+.dropdown-item {
+  padding: 15px 20px;
+}
+
+.user {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-brand img {
+    height: 3rem;
+    width: auto;
+    display: block;
+  }
+}

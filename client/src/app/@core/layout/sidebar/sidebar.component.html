@@ -1,0 +1,292 @@
+<!-- Main sidebar -->
+<div class="sidebar sidebar-main sidebar-expand-md" style="height: 100vh">
+  <!-- Sidebar mobile toggler -->
+  <div class="sidebar-mobile-toggler text-center">
+    <a
+      (click)="sidebarSmCollapse()"
+      href="javascript:void(0)"
+      class="sidebar-mobile-main-toggle"
+    >
+      <i class="fas fa-chevron-left"></i> Navigation
+    </a>
+  </div>
+  <!-- /sidebar mobile toggler -->
+  <!-- Sidebar content -->
+  <div class="sidebar-content">
+    <div class="sidebar-user">
+      <div class="card-body" style="padding: 13px 10px">
+        <div class="media text-center">
+          <!-- <div class="mr-3">
+            <a href="javascript:void(0)"><img src="assets/head-659652_960_720.webp" width="38" height="38" class="rounded-circle" alt=""></a>
+          </div> -->
+          <div class="media-body">
+            <div>
+              <img src="assets/logo.png" height="50" />
+            </div>
+            <!-- <div class="font-size-xs opacity-50">
+              <i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main navigation -->
+    <div class="card card-sidebar-mobile">
+      <ul class="nav nav-sidebar" data-nav-type="accordion">
+        <li 
+        *ngxPermissionsOnly="[
+            UserType.influencer
+          ]"
+        
+        class="nav-item">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/discover"
+            routerLinkActive="active"
+          >
+            <img src="assets/Group 3.png" />
+            <span class="pl-4"> Discover </span>
+          </a>
+        </li>
+        <li
+          class="nav-item"
+          *ngxPermissionsOnly="[
+            UserType.brand
+          ]"
+        >
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/brands"
+            routerLinkActive="active"
+          >
+            <img src="assets/Combined Shape.png" />
+            <span class="pl-4">Engage</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/discovery"
+            routerLinkActive="active"
+          >
+            <img src="assets/Group 3.png" />
+            <span class="pl-4">Discovery</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngxPermissionsOnly="[UserType.admin]">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/campaigns/admin-list"
+            routerLinkActive="active"
+          >
+            <img src="assets/Combined Shape.png" />
+            <span class="pl-4">Campaigns</span></a
+          >
+        </li>
+
+        <li
+          class="nav-item"
+          *ngxPermissionsOnly="[
+            UserType.admin,
+            UserType.agency
+          ]"
+        >
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/brands"
+            routerLinkActive="active"
+          >
+            <img src="assets/Combined Shape.png" />
+            <span class="pl-4">Engage</span></a
+          >
+        </li>
+
+        <li class="nav-item" *ngxPermissionsOnly="[UserType.admin]">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/users/"
+            routerLinkActive="active"
+          >
+            <i style="color: #2b5aff" class="fas fa-users"></i>
+            <span>Users</span>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngxPermissionsOnly="[UserType.influencer]">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/campaigns/influencer-campaign-list"
+            routerLinkActive="active"
+          >
+            <img src="assets/Combined Shape.png" />
+            <span class="pl-4">Engage</span></a
+          >
+        </li>
+
+        <li class="nav-item" *ngxPermissionsOnly="[UserType.influencer]">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/collabs"
+            routerLinkActive="active"
+          >
+            <img src="assets/Shape.png" />
+            <span class="pl-4">Collabs</span></a
+          >
+        </li>
+        <!-- <li class="nav-item nav-item-submenu" [ngClass]="{'nav-item-open':!isMenuCollapsed}">
+          <a (click)="isMenuCollapsed = !isMenuCollapsed" href="javascript:void(0)" class="nav-link">
+            <i class="fas fa-envelope"></i> <span>Users</span></a>
+          <ul class="nav nav-group-sub" [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link ">User Details</a></li>
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link ">Add Users</a></li>
+          </ul>
+        </li> -->
+
+        <li class="nav-item">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/chat"
+            routerLinkActive="active"
+          >
+            <img src="assets/Combined Shape (1).png" />
+            <span class="pl-3">Chat {{ chatCount }}</span></a
+          >
+        </li>
+        <li
+          class="nav-item"
+          *ngxPermissionsOnly="[UserType.brand, UserType.agency]"
+        >
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/retarget"
+            routerLinkActive="active"
+          >
+            <img src="assets/Group 6.png" />
+            <span class="pl-4">Retarget</span></a
+          >
+        </li>
+        <!-- <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+            <img src="assets/Shape.png">
+            <span class="pl-4">Measure</span>
+          </a>
+        </li> -->
+        <li
+          *ngxPermissionsOnly="[
+            UserType.admin,
+            UserType.brand,
+            UserType.agency
+          ]"
+          class="nav-item"
+        >
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/measure"
+            routerLinkActive="active"
+          >
+            <img src="assets/Shape.png" />
+            <span class="pl-4">Measure</span></a
+          >
+        </li>
+
+        <li *ngxPermissionsOnly="[UserType.admin]" class="nav-item">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/payments"
+            routerLinkActive="active"
+          >
+            <i style="color: #2b5aff" class="fas fa-dollar-sign"></i>
+            <span class="pl-2">Payments</span></a
+          >
+        </li>
+
+        <li *ngxPermissionsOnly="[UserType.admin]" class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/settings']"
+            routerLinkActive="router-link-active"
+            routerLinkActive="active"
+          >
+            <i style="color: #2b5aff" class="fas fa-cog"></i>
+            <span>Settings</span></a
+          >
+        </li>
+        <li
+          class="nav-item"
+          *ngxPermissionsOnly="[
+            UserType.influencer,
+            UserType.brand,
+            UserType.agency
+          ]"
+        >
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/capture"
+            routerLinkActive="active"
+          >
+            <img src="assets/Group 5.png" height="15px" />
+            <span class="pl-4">Capture</span>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngxPermissionsOnly="[UserType.influencer]">
+          <a
+            class="nav-link"
+            [routerLink]="['/profile/portfolio']"
+            routerLinkActive="router-link-active"
+          >
+            <i style="color: #2b5aff" class="fas fa-briefcase"></i>
+            <span class="pl-4">Portfolio</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="this.currentUser.instagram==null">
+          <a
+            href="javascript:void(0)"
+            class="nav-link"
+            routerLink="/auth/instagram"
+            routerLinkActive="active">
+            <i class="fab fa-instagram" style="color: #2b5aff"></i>
+            <span class="mt-1">Instagram </span>
+            
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="this.currentUser.instagram!=null">
+          <a
+            href="https://instagram.com/{{this.currentUser.instagram.profileInfo.username}}"
+            class="nav-link">
+            <i class="fab fa-instagram" style="color: #0eac4a"></i>
+            <span class="mt-1" style="color: #0eac4a">{{this.currentUser.instagram.profileInfo.username}}</span
+            ><i class="fas fa-check-circle ml-4"></i>
+          </a>
+        </li>
+        <!-- *ngIf="this.currentUser.instagram != null" -->
+
+        <!-- <li class="nav-item nav-item-submenu nav-item-open" [ngClass]="{'nav-item-open':!isSettingCollapsed}">
+          <a (click)="isSettingCollapsed = !isSettingCollapsed" href="javascript:void(0)" class="nav-link">
+            <i class="fas fa-envelope"></i> <span>Settings</span></a>
+          <ul class="nav nav-group-sub" [ngbCollapse]="isSettingCollapsed" class="collapse navbar-collapse">
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link ">User Management</a></li>
+            <li class="nav-item"><a href="javascript:void(0)" class="nav-link ">Orgnaization Support</a></li>
+          </ul>
+        </li> -->
+        <!-- /main -->
+      </ul>
+    </div>
+    <!-- /main navigation -->
+  </div>
+  <!-- /sidebar content -->
+</div>
+<!-- /main sidebar -->

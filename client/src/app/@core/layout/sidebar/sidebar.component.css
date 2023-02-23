@@ -1,0 +1,34 @@
+.sidebar {
+  /* background-image: url(/assets/sidebar.png); */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(134, 174, 254, 25%),
+    rgba(211, 225, 254, 25%)
+  );
+  height: 100vh;
+  background-size: cover;
+  background-position: 100%;
+  background-repeat: no-repeat;
+}
+.nav-item .nav-link.active {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(37, 2, 250, 70%),
+    rgba(177, 38, 172, 31%)
+  );
+  border-radius: 10px;
+  width: 85%;
+}
+
+.nav-item .nav-link {
+  color: #242f57;
+  line-height: 1;
+  /* justify-content: center; */
+}
+i.fas.fa-dollar-sign, i.fas.fa-cog  {
+  margin-top: -2px;
+}
+i.fab.fa-instagram {
+  margin-top: 2px;
+  margin-left: 1px;
+}
