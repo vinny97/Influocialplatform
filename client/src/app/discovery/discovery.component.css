@@ -1,0 +1,174 @@
+.inputSearch {
+  position: relative;
+}
+
+.inputSearch .fa-search {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  color: #fff;
+}
+
+.inputSearch input[type="search"] {
+  width: 40px;
+  height: 40px !important;
+  background-color: #7ccbfb;
+  border-radius: 100px;
+  transition: all 0.5s ease-out;
+  outline: 0;
+  border: 0;
+}
+
+.inputSearch input[type="search"]:focus {
+  padding: 5px 40px;
+  width: 100%;
+  height: 40px !important;
+  transition: all 0.5s ease-in;
+}
+
+.inputSearch input[type="search"]::placeholder,
+.inputSearch input[type="search"] {
+  color: #fff;
+  font-size: 0px;
+}
+
+.inputSearch input[type="search"]:focus::placeholder,
+.inputSearch input[type="search"]:focus {
+  font-size: 16px;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  background-color: #f5faff;
+  z-index: 12;
+}
+
+.table-responsive {
+  height: 624px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 0;
+}
+
+.table td {
+  text-align: center;
+}
+
+.table thead td {
+  font-size: 20px;
+  line-height: 22px;
+  color: #535875;
+}
+
+.table tbody td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table tbody td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.table tbody td {
+  background-color: #fff;
+  border-right: 1px solid #000;
+  height: 275px;
+  width: 15%;
+}
+
+.table tbody tr {
+  border-bottom: 13px solid #f5faff;
+}
+
+.table tbody td:last-child {
+  border-right: 0;
+}
+
+.userName {
+  font-weight: 500;
+  font-size: 20px;
+  color: #1a1f3c;
+}
+
+.userPic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.userPic img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.text-brown {
+  color: #987878;
+}
+
+.text-light-green {
+  color: #8fcb42;
+}
+
+.matricHeading {
+  color: #242f57;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.matricBox {
+  background: #ffffff;
+  box-shadow: 0px 0px 0px rgba(63, 63, 68, 0.05),
+    0px 1.27604px 3.82811px rgba(63, 63, 68, 0.15);
+  border-radius: 12.7604px;
+  width: 100%;
+  height: 160px;
+  font-size: 40px;
+  color: #4a8283;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-250 {
+  width: 250px;
+}
+
+.textNo_wrap {
+  white-space: nowrap;
+}
+
+.text-green {
+  color: #08d06f;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+::ng-deep .discoverySelect.ng-select .ng-select-container {
+  background-color: #bad2ff !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
+::ng-deep
+  .discoverySelect.ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  color: #000;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 34px;
+}
+.list-inline-item {
+  border: 0.5px solid rgba(0, 0, 0, 0.295);
+  border-radius: 18px;
+  padding: 5px 9px;
+}

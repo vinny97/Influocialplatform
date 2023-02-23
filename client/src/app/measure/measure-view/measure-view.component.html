@@ -1,0 +1,96 @@
+<div class="row justify-content-center my-4">
+
+  <!-- Media is Video -->
+  <video *ngIf="this.mediaType==='VIDEO',else picture" id="my_video_1" class="pictures" controls preload="none">
+    <source [src]="this.mediaBasicInfo?.media_url" type='video/mp4' />
+  </video>
+  <ng-template #picture>
+
+    <div class="col-md-9">
+      <app-image-carousal [images]="[mediaBasicInfo?.media_url]"></app-image-carousal>
+    </div>
+  </ng-template>
+</div>
+
+<!-- <div class="row my-3">
+  <div class="col-md-6">
+    <h6 class="fs-18 text-blue fw-600">Likes/Comments</h6>
+    <div class="card shadow border-0">
+      <div class="card-body p-lg-4">
+        <img src="../../../assets/chart.png" width="100%" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fs-18 text-blue fw-600">Audience</h6>
+    <div class="card shadow border-0">
+      <div class="card-body p-lg-5">
+        <div class="d-flex justify-content-center w-100 py-lg-5">
+          <span class="marker">120k</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="state">
+      <li>
+        <app-metrics-card [label]="'Engagement'" [cardValue]=this.engagement|shortNumber></app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Engagement(%)'" [showPercentage]=true [cardValue]=this.engagementPercentage>
+        </app-metrics-card>
+      </li>
+
+
+      <li>
+        <app-metrics-card [label]="'Cost per engagement'" [showCurrency]=true
+          [cardValue]=this.costPerEngagement|shortNumber>
+        </app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Likes'" [cardValue]=this.mediaBasicInfo?.like_count|shortNumber></app-metrics-card>
+      </li>
+      <li>
+        <app-metrics-card [label]="'Comments'" [cardValue]=this.mediaBasicInfo?.comments_count|shortNumber>
+        </app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Impressions'" [cardValue]=impressions|shortNumber></app-metrics-card>
+      </li>
+
+      <li>
+        <app-metrics-card [label]="'Reach'" [cardValue]=this.reach|shortNumber></app-metrics-card>
+      </li>
+
+
+      <li>
+        <app-metrics-card [label]="'Reach(%)'" [showPercentage]=true [cardValue]=this.reachPercentage>
+        </app-metrics-card>
+      </li>
+
+      <li *ngIf="this.mediaType ==='VIDEO'">
+        <app-metrics-card [label]="'Video Views'" [cardValue]=this.videoViews|shortNumber>
+        </app-metrics-card>
+      </li>
+
+      <li *ngIf="this.mediaType ==='VIDEO'">
+        <app-metrics-card [label]="'Video Views(%)'" [showPercentage]=true [cardValue]=this.viewsPercentage>
+        </app-metrics-card>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<app-measure-post-card *ngIf="this.mediaID" [isView]=false [mediaID]="this.mediaID"
+  (mediaInfoDone)='onMediaBasicInfo($event)'>
+</app-measure-post-card>
+
+<app-proposal-card-stats [userName]="'influocial'" [isView]=false (onRequestDone)='onBasicData($event)'>
+</app-proposal-card-stats>

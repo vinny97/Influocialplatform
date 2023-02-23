@@ -1,0 +1,33 @@
+<!-- Current data of proposal  -->
+<div class="card" *ngIf="this.result">
+  <h5 class="card-header">Current Proposal</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ this.result.name }}</h5>
+    <p class="card-text">
+      {{ this.result.motivation }}
+    </p>
+    <p>{{ this.result.fee | currency }}</p>
+  </div>
+</div>
+
+<!-- Form to get suggestions from brand/agency  -->
+<div class="card">
+  <h5 class="card-header">Rebid Proposal Fee</h5>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="col-md-5">
+        <input
+          placeholder="Bid new proposal fee"
+          formControlName="fee"
+          style="background-color: rgb(219, 226, 226)"
+          appNumericOnly
+        />
+      </div>
+      <div class="col-md-12 mt-2 btn-group">
+        <button class="btn btn-primary" (click)="onSubmit()">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-loader *ngIf="this.isLoader"></app-loader>

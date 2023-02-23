@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list mb-4">
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(1)"
+            [ngClass]="{ active: type === 1 }"
+            >Pending</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(2)"
+            [ngClass]="{ active: type === 2 }"
+            >Rebid</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(3)"
+            [ngClass]="{ active: type === 3 }"
+            >Approved</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(4)"
+            [ngClass]="{ active: type === 4 }"
+            >Declined</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(5)"
+            [ngClass]="{ active: type === 5 }"
+            >Published</a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            (click)="onTypeClick(6)"
+            [ngClass]="{ active: type === 6 }"
+            >Outright</a
+          >
+        </li>
+      </ul>
+      <!-- <h3 class="fs-25 fw-500 text-blue py-3">Proposals</h3> -->
+    </div>
+  </div>
+  <div *ngIf="type === 6" class="row justify-content-end">
+    <div class="col-md-3 mb-3">
+      <ng-select
+        [items]="outright"
+        [(ngModel)]="outrightStatus"
+        (change)="getAll()"
+        placeholder="Select outright status"
+        bindLabel="name"
+        bindValue="id"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-6 mb-4 mb-lg-5" *ngFor="let proposal of result?.docs">
+      <h5>{{ proposal?.campaign?.name }}</h5>
+      <div
+        class="card text-center"
+        [style.background-image]="
+          proposal?.campaign?.image | image | sanitizeUrl
+        "
+      >
+        <div class="">
+          <button class="btn btn-green green-shadow" (click)="onView(proposal)">
+            {{ proposal | collabsListButton: this.type }}
+          </button>
+        </div>
+      </div>
+      <app-proposal-submission-view
+        [fee]="proposal?.fee"
+        [motivation]="proposal?.motivation"
+        [contentPost]="proposal?.contentPost[0]"
+        [contentCaption]="proposal?.contentCaption"
+      ></app-proposal-submission-view>
+    </div>
+  </div>
+
+  <no-content
+    *ngIf="!isLoader && (!result || result.docs.length === 0)"
+    [label]="'You have no proposals here!'"
+  >
+  </no-content>
+
+  <!-- pagination -->
+  <app-pagination
+    *ngIf="result?.totalDocs > limit"
+    (onPageChange)="onClickPage($event)"
+    [page]="this.page"
+    [limit]="this.limit"
+    [totalDocs]="result?.totalDocs"
+  >
+  </app-pagination>
+</div>
+
+<!-- Accept Proposal Modal -->

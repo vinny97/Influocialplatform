@@ -1,0 +1,35 @@
+.card2{
+    background-image: linear-gradient(to bottom, rgba(211,225,254,25%), rgba(134,174,254,25%));
+    border: none;
+    border-radius: 10px;
+    padding: 20px 0;
+  }
+  .profile-img{
+    margin: 15px auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+  }
+  .profile-img img{
+   height: 100%;
+   width: 100%;
+   border-radius: 100%;
+   object-fit: cover;
+  }
+  .post-img{
+     margin: 15px auto;
+     height: 180px;
+     width: 180px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     background: rgba(48, 104, 255,.1);
+     padding: 20px;
+    border-radius: 15px;
+  }
+  .post-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  

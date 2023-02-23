@@ -1,0 +1,33 @@
+<div class="card2 shadow text-center" *ngIf="this.isView">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <div class="profile-img">
+        <img [src]="this.profile_picture_url|image" alt="">
+      </div>
+      <h6 class="mb-lg-4">@{{this.username}} </h6>
+      <h6>Followers: {{this.totalFollowers|shortNumber}} </h6>
+    </div>
+    <div class="col-md-6">
+      <h6>Post</h6>
+      <!-- Media is Video -->
+      <video *ngIf="this.mediaType==='VIDEO',else picture" id="my_video_1" class="pictures" controls preload="none">
+        <source [src]="this.mediaUrl" type='video/mp4' />
+      </video>
+
+      <!-- Media is Image -->
+      <ng-template #picture>
+        <div class="post-img">
+          <img [src]="this.mediaUrl" alt="">
+        </div>
+      </ng-template>
+      <div class="pt-lg-3 mx-lg-4">
+        <a href="javascript:void(0)" class="btn btn-green mb-0 green-shadow d-md-block w-100"
+          (click)="viewAnalytics()">View Analytics</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-proposal-card-stats *ngIf="this.isView" [userName]="this.username" [isView]=false
+  (onRequestDone)='onBasicData($event)'>
+</app-proposal-card-stats>

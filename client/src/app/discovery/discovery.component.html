@@ -1,0 +1,223 @@
+<div class="row mx-0 my-5">
+  <div class="col-lg-2">
+    <ng-select
+      [items]="engagements"
+      class="discoverySelect"
+      bindLabel="name"
+      bindValue="name"
+      (change)="filterByEngagement($event)"
+      placeholder="Engagement"
+    ></ng-select>
+  </div>
+  <div class="col-lg-2">
+    <ng-select
+      [items]="influencers_followers_range"
+      class="discoverySelect"
+      bindLabel="name"
+      bindValue="name"
+      placeholder="Followers"
+      (change)="filterByFollowers($event)"
+    ></ng-select>
+  </div>
+  <div class="col-lg-2">
+    <ng-select
+      [items]="influencers_countries"
+      class="discoverySelect"
+      bindLabel="name"
+      bindValue="name"
+      (change)="filterByLocation($event)"
+      placeholder="Location
+        "
+    ></ng-select>
+  </div>
+  <div class="col-lg-2">
+    <ng-select
+      [items]="influencers_categories"
+      class="discoverySelect"
+      bindLabel="name"
+      bindValue="name"
+      placeholder="Category"
+      (change)="filterByCategory($event)"
+    ></ng-select>
+  </div>
+  <div class="col-lg-2">
+    <ng-select
+      [items]="influencers_categories"
+      class="discoverySelect"
+      [multiple]="false"
+      [clearable]="false"
+      [searchable]="true"
+      placeholder="Sort By:"
+    ></ng-select>
+  </div>
+  <div class="col-lg-2">
+    <div class="inputSearch">
+      <i class="fas fa-search"></i>
+      <input type="search" placeholder="Search" [(ngModel)]="search" />
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-borderless position-relative">
+    <thead>
+      <tr>
+        <td>Influencer</td>
+        <td>Bio</td>
+        <td>Engagement Rate</td>
+        <td>Location</td>
+        <td>Est. Cost Per Post</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let influencer of influencers | filter: search"
+        (click)="openModal(influencer)"
+      >
+        <td>
+          <div
+            class="d-flex justify-content-center align-items-center flex-column h-100"
+          >
+            <div class="userName" *ngIf="influencer?.profileInfo?.username">
+              @{{ influencer?.profileInfo?.username }}
+            </div>
+            <div class="userPic">
+              <img [src]="influencer?.profilePicture" alt="" />
+            </div>
+          </div>
+        </td>
+        <td>
+          <div
+            class="d-flex justify-content-center align-items-center flex-column h-100"
+          >
+            <div class="row mx-0">{{ influencer?.bio }}</div>
+          </div>
+        </td>
+        <td>
+          <div
+            class="d-flex justify-content-center align-items-center flex-column h-100"
+          >
+            <div class="fs-20 fw-400" *ngIf="influencer?.reach">
+              {{ influencer?.reach | number: "1.2-2" }}%
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div
+            class="d-flex justify-content-center align-items-center flex-column h-100"
+          >
+            <div class="fs-20 fw-500">{{ influencer?.country }}</div>
+          </div>
+        </td>
+        <td>
+          <div
+            class="d-flex justify-content-center align-items-center flex-column h-100"
+          >
+            <div class="text-green">
+              {{ influencer?.cppMin | currency }} -
+              {{ influencer?.cppMax | currency }}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>
+
+<!-- modal -->
+<ng-template #content let-c="close">
+  <div class="modal-body">
+    <div class="userPic mx-auto">
+      <img [src]="selectedInfluencer?.profilePicture" alt="" />
+    </div>
+    <div class="text-brown text-center">
+      <div class="fs-22 fw-500 my-2" *ngIf="selectedInfluencer?.userName">
+        @{{ selectedInfluencer?.userName }}
+      </div>
+      <div class="fs-20 fw-500 w-250 mx-auto">
+        {{ selectedInfluencer?.bio }}
+      </div>
+    </div>
+    <div class="text-center">
+      <i class="fa-solid fa-clipboard-list-check"></i>
+      <div class="fs-26 fw-700">
+        Category: <br />
+        {{ selectedInfluencer?.category }}
+      </div>
+      <div class="fs-26 fw-700">
+        Location: <br />
+        {{ selectedInfluencer?.country }}
+      </div>
+      <div class="fs-26 fw-500 mt-3">
+        Estimated Cost Per Post: <br />
+        <div class="text-green">
+          {{ selectedInfluencer?.cppMin | currency }} -
+          {{ selectedInfluencer?.cppMax | currency }}
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-around mt-3">
+      <div class="fs-26 fw-700">Posts</div>
+      <div class="fs-26 fw-700 text-light-green">Social Metrics</div>
+    </div>
+
+    <div class="row mx-0">
+      <div class="col-lg-3 mb-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Followers</div>
+          <div class="matricBox">
+            {{ selectedInfluencer?.follower | shortNumber }}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Average Engagement</div>
+          <div class="matricBox" *ngIf="selectedInfluencer?.avgEngagement">
+            {{ selectedInfluencer?.avgEngagement }}%
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Engagement Rate</div>
+          <div class="matricBox" *ngIf="selectedInfluencer?.reach">
+            {{ selectedInfluencer?.reach.toFixed(2) }}%
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Average Impressions</div>
+          <div class="matricBox">$0.15</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Posts</div>
+          <div class="matricBox">{{ selectedInfluencer?.totalPosts }}</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2">Avg. Likes per post</div>
+          <div class="matricBox">
+            {{ selectedInfluencer?.avgLikesPerPost | shortNumber }}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="text-center">
+          <div class="matricHeading mb-2 textNo_wrap">
+            Avg. comments per post
+          </div>
+          <div class="matricBox">
+            {{ selectedInfluencer?.avgCommentsPerPost | shortNumber }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

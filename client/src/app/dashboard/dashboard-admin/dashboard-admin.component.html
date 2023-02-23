@@ -1,0 +1,86 @@
+<div *ngIf="result && !isLoader" class="row my-4">
+  <div class="col-md-12">
+    <h4 class="pb-3 fs-18">User Stats</h4>
+    <ul class="state">
+      <li>
+        <app-dashboard-stat-card
+          [label]="'Total Users'"
+          [value]="result.totalUsers | shortNumber"
+          [icon]="'../../assets/dashboard/users-solid.svg'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+
+      <li>
+        <app-dashboard-stat-card
+          [label]="'Influencer'"
+          [value]="result.totalInfluencer | shortNumber"
+          [icon]="'../../assets/dashboard/users-solid.svg'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+      <li>
+        <app-dashboard-stat-card
+          [label]="'Brand/Agency'"
+          [value]="result.totalBrandsAndAgency | shortNumber"
+          [icon]="'../../assets/dashboard/building-solid.svg'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row my-4" *ngIf="result && !isLoader">
+  <div class="col-md-12">
+    <h4 class="pb-3 fs-18">Campaigns Stats</h4>
+    <ul class="state">
+      <li>
+        <app-dashboard-stat-card
+          [label]="'Active Campaigns'"
+          [value]="result.activeCampaigns | shortNumber"
+          [icon]="'../../assets/reach.png'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+      <li>
+        <app-dashboard-stat-card
+          [label]="'In review Campaigns'"
+          [value]="result.inReviewCampaigns | shortNumber"
+          [icon]="'../../assets/reach.png'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+      <li>
+        <app-dashboard-stat-card
+          [label]="'Completed Campaigns'"
+          [value]="result.completedCampaigns | shortNumber"
+          [icon]="'../../assets/reach.png'"
+        >
+        </app-dashboard-stat-card>
+      </li>
+      <!-- <li>
+        <div class="state-card">
+          <h6 class="fs-16 text-blue mb-3 text-right">Total Impressions</h6>
+          <div class="d-flex">
+            <img src="../../assets/impression.png" alt="">
+            <div class="ml-auto">
+              2,506
+            </div>
+          </div>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<h4 class="pb-3 fs-18">Active Campaigns</h4>
+<a href="javascript:void(0)" (click)="toAdminCampaigns()"
+  ><span> See more</span></a
+>
+<campaign-list-table
+  [result]="this.campaignResult"
+  [isCreatedByVisible]="true"
+></campaign-list-table>
+
+<app-loader *ngIf="isLoader"></app-loader>

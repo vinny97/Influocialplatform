@@ -1,0 +1,76 @@
+<!-- Carousal and text box -->
+<app-content-view *ngIf="result" [result]="result"></app-content-view>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 my-4 text-center">
+      <button
+        *ngIf="result?.status === 4; else content"
+        class="btn btn-green green-shadow px-5"
+      >
+        {{ result?.status | proposalStatus }}
+      </button>
+    </div>
+    <ng-template #content>
+      <button
+        *ngIf="result?.status === 2; else publish"
+        class="btn btn-green green-shadow px-5"
+        (click)="onClickButton(result?.contentStatus)"
+      >
+        {{ result?.contentStatus | proposalContent }}
+      </button>
+    </ng-template>
+    <!-- shows waiting response to both brand and influencer -->
+    <div *ngIf="this.result">
+      <div *ngxPermissionsOnly="[UserType.influencer]">
+        <h3 *ngIf="this.result.proposalType === 1">
+          Waiting for Brand response
+        </h3>
+      </div>
+      <div *ngxPermissionsOnly="[UserType.brand]">
+        <h3 *ngIf="this.result.proposalType === 2">
+          Waiting for Influencer response
+        </h3>
+      </div>
+    </div>
+
+    <!-- //////// -->
+    <div *ngIf="this.result.proposalType === 2">
+      <div *ngxPermissionsOnly="[UserType.influencer]">
+        <button
+          *ngIf="result?.contentStatus === 1"
+          class="btn btn-green green-shadow px-5"
+          (click)="update()"
+        >
+          Lets Publish
+        </button>
+        <button
+          *ngIf="result?.contentStatus === 1"
+          class="btn btn-danger green-shadow px-5"
+          (click)="onReject()"
+        >
+          Reject
+        </button>
+      </div>
+    </div>
+
+    <ng-template #publish>
+      <button
+        class="btn btn-green green-shadow px-5"
+        (click)="publishContent()"
+      >
+        Publish Content
+      </button>
+    </ng-template>
+
+    <div class="col-md-12 text-right my-4">
+      <div>
+        <span class="text-blue fs-16 mb-2">Campaign start date</span>
+        <span class="fs-20">{{ result?.campaign?.startDate | date }}</span>
+      </div>
+      <div>
+        <span class="text-blue fs-16">Fee (USD)</span>
+        <span class="fs-20"> {{ result?.fee | currency }} </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container">
+  <div [formGroup]="form" class="row mt-5 justify-content-center">
+    <div class="col-lg-6">
+      <h5 class="text-center text-blue2">Post</h5>
+      <ul>
+        <li *ngFor="let img of f.contentPost.value; let i = index">
+          <div class="add-box">
+            <img [src]="img | image" height="350" width="350" />
+            <i
+              class="far fa-times-circle"
+              (click)="upload.removeImage(img)"
+            ></i>
+          </div>
+        </li>
+      </ul>
+
+      <upload-file
+        (upload)="onUploadImage($event)"
+        (remove)="onRemoveImage($event)"
+        [accept]="'image/jpeg'"
+        #upload
+      ></upload-file>
+      <div
+        (click)="upload.click()"
+        class="card text-center"
+        *ngIf="this.f.contentPost.value.length === 0"
+      >
+        <div class="">
+          <img src="assets/added.png" height="200" alt="upload image" />
+        </div>
+      </div>
+      <errors [isSubmit]="isSubmit" [control]="f.contentPost"></errors>
+    </div>
+    <div class="col-md-10 mb-4">
+      <h6 class="text-center text-blue2">Caption</h6>
+      <textarea
+        placeholder="Tell the brand why your interested in applying to this campaign"
+        name=""
+        id=""
+        cols="30"
+        formControlName="contentCaption"
+        rows="10"
+        class="w-100 border-0 rounded p-3"
+      ></textarea>
+      <errors [isSubmit]="isSubmit" [control]="f.contentCaption"></errors>
+    </div>
+
+    <div class="col-md-12 my-4 text-center">
+      <button class="btn btn-green green-shadow px-5" (click)="onSubmit()">
+        Submit
+      </button>
+    </div>
+
+    <div class="col-md-12 text-right my-4">
+      <div>
+        <span class="text-blue fs-16 mb-2">Campaign start date</span>
+        <span class="fs-20"> {{ result?.campaign?.startDate | date }} </span>
+      </div>
+      <div>
+        <span class="text-blue fs-16">Fee (USD)</span>
+        <span class="fs-20"> {{ result?.fee | currency }} </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+.bio p, .motivation p{
+  color: #987878;
+}
+.user-name .d-flex h6{
+color: #987878;
+}
+.img-div{
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.img-div img{
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.motivation p{
+  width: 50%;
+}
+.interest ul{
+display: flex;
+flex-wrap: wrap;
+}
+.interest ul li{
+background: rgba(237, 225, 225, 0.7);
+border-radius: 10px;
+padding: 5px 10px;
+margin-right: 20px;
+display: flex;
+align-items: center;
+color:  #535875;
+}
+.interest ul li .dot{
+height: 5px;
+width: 5px;
+border-radius: 100px;
+background-color: black;
+margin-right: 15px;
+}
+.fa-heart, .fa-comment-dots{
+cursor: pointer;
+}
+.list{
+list-style: none;
+display: flex;
+padding: 0;
+margin: 0;
+}
+.list li:first-child {
+padding-left: 0px;
+}
+
+.list li {
+padding-left: 50px;
+}
+.list li a{
+font-weight: 500;
+color: #0F1222;
+font-size: 18px;
+cursor: pointer;
+}
+.list li a.active{
+font-weight: 500;
+color: #10DD79;
+font-size: 18px;
+border-bottom: 5px solid #10DD79;
+}
+.pictures{
+  height: 200px;
+  width: 200px;
+}
+.pictures img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.chart{
+  height: 200px;
+  width: 300px;
+}
+.chart img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.c-p{
+cursor: pointer;
+}
+
+.info-icon{
+  position: absolute;
+  top: -10px;
+  right: 25px;
+  border-radius: 10px;
+  height: 23px;
+}
+
+@media only screen and (max-width: 1048px) {
+.motivation p{
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+}
+

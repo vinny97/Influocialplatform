@@ -1,0 +1,75 @@
+<app-content-view *ngIf="result && isOutRight; else content" [result]="result"></app-content-view>
+
+<ng-template #content>
+  <div class="container">
+    <div [formGroup]="form" class="row mt-5 justify-content-center">
+      <div class="col-lg-6">
+        <h5 class="text-center text-blue2">Post</h5>
+        <ul *ngIf="this.f.contentPost.value.length>0">
+          <li>
+            <i class="far fa-times-circle" (click)="removeImage()"></i>
+            <div class="add-box">
+              <img [src]="this.f.contentPost.value[0] | image" *ngIf="this.f.contentPost.value.length>0" />
+            </div>
+          </li>
+        </ul>
+
+        <upload-file (upload)="onUploadImage($event)" (remove)="onRemoveImage($event)" [accept]="'image/jpeg'" #upload>
+        </upload-file>
+        <div class="card text-center" *ngIf="this.f.contentPost.value.length=== 0">
+
+          <div class="">
+            <img src="assets/added.png" height="200" alt="upload image" (click)="upload.click()"
+              *ngIf="this.f.contentPost.value.length=== 0" />
+          </div>
+        </div>
+        <errors [isSubmit]="isSubmit" [control]="f.contentPost"></errors>
+      </div>
+      <div class="col-md-10 mb-4">
+        <h6 class="text-center text-blue2">Caption</h6>
+        <textarea placeholder="Tell the brand why your interested in applying to this campaign" name="" id="" cols="30"
+          formControlName="contentCaption" rows="10" class="w-100 border-0 rounded p-3"></textarea>
+        <errors [isSubmit]="isSubmit" [control]="f.contentCaption"></errors>
+      </div>
+
+      <div class="col-md-12 my-4 text-center">
+        <button class="btn btn-green green-shadow px-5" (click)="onSubmit()">
+          Submit
+        </button>
+      </div>
+
+      <div class="col-md-12 text-right my-4">
+        <div>
+          <span class="text-blue fs-16 mb-2">Campaign start date</span>
+          <span class="fs-20"> {{ result?.campaign?.startDate | date }} </span>
+        </div>
+        <div>
+          <span class="text-blue fs-16">Fee (USD)</span>
+          <span class="fs-20"> {{ result?.fee | currency }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="isOutRight" class="container">
+  <div [formGroup]="form" class="row mt-5 justify-content-center">
+    <!-- Out Right Fee -->
+    <div class="col-md-5" *ngIf="isOutRight">
+      <h6 class="text-center text-blue2">Outright Fee($)</h6>
+      <input placeholder="$" type="text" formControlName="outrightFee" appNumericOnly
+        [readonly]="this.result?.outrightStatus === 2" />
+      <errors [control]="f.outrightFee" [isSubmit]="isSubmit"></errors>
+    </div>
+    <div class="col-md-12 my-4 text-center" *ngIf="this.result?.outrightStatus === 1; else outRight">
+      <button class="btn btn-green green-shadow px-5" (click)="onSubmit()">
+        Submit
+      </button>
+    </div>
+    <div class="col-md-12 my-4 text-center" *ngIf="this.result?.outrightStatus === 2" #outRight>
+      <button class="btn btn-green green-shadow px-5">
+        Waiting for Brand Response
+      </button>
+    </div>
+  </div>
+</div>
