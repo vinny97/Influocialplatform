@@ -1,0 +1,126 @@
+.auth {
+  min-height: 100vh;
+  height: 100vh;
+  background: url(/assets/Register.png);
+  width: 100%;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+label {
+  color: black;
+  font-weight: 600;
+}
+.form-control {
+  background: #fff;
+  height: 52px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+}
+.default-btn {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 37%);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}
+.dark-blue {
+  background: #525ac9;
+}
+.light-blue {
+  background: #3e87cf;
+}
+.dark-red {
+  background: #cf3e3e;
+}
+.forgot {
+  color: #1959b8;
+}
+.pt-100 {
+  padding-top: 100px;
+}
+.pt-50 {
+  padding-top: 50px;
+}
+.wrapper {
+  height: 400px;
+  width: 400px;
+  margin-left: auto;
+}
+.wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+::ng-deep .carousel:focus {
+  outline: none;
+}
+::ng-deep .carousel-indicators {
+  right: 50%;
+  bottom: 20%;
+}
+::ng-deep .carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  opacity: 1;
+  background-color: #a1a1a1;
+}
+::ng-deep .carousel-indicators li.active {
+  background-color: #29c4a4;
+}
+::ng-deep .carousel-caption {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  top: 15%;
+  left: 0%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #393939;
+  text-align: center;
+}
+::ng-deep .carousel-caption p {
+  font-size: 16px;
+  color: #393939;
+}
+.name {
+  color: #393939;
+  font-size: 24px;
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+}
+.name span {
+  color: #40df34;
+  font-size: 24px;
+}
+/* ngb-carousel .wrapper {
+   position: relative;
+   height: 0;
+   padding-top: 55%;
+ }
+
+ ngb-carousel .wrapper>img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+ } */
+@media (max-width: 768px) {
+  .auth {
+    min-height: 100vh;
+    height: 100vh;
+    background: white;
+    width: 100%;
+  }
+  .pt-100 {
+    padding-top: 50px;
+  }
+  .name {
+    display: none;
+  }
+}
