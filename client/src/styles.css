@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./styles/layout.css";
+/* @import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css'; */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+body {
+  font-family: "Rubik", sans-serif;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style-type: none;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+.text-aqua {
+  color: #5bdd9e;
+}
+.text-grey {
+  color: #74757e;
+}
+.text-blue {
+  color: #313f74;
+}
+.text-purple {
+  color: #586aab;
+}
+.text-blue1 {
+  color: #3068ff;
+}
+.text-blue2 {
+  color: #535875;
+}
+.fs-10 {
+  font-size: 10px !important;
+}
+.fs-12 {
+  font-size: 12px !important;
+}
+.fs-14 {
+  font-size: 14px !important;
+}
+.fs-16 {
+  font-size: 16px !important;
+}
+.fs-18 {
+  font-size: 18px !important;
+}
+.fs-20 {
+  font-size: 20px !important;
+}
+.fs-22 {
+  font-size: 22px !important;
+}
+.fs-25 {
+  font-size: 25px !important;
+}
+.fw-400 {
+  font-weight: normal;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-700 {
+  font-weight: 700;
+}
+.text-elipsis {
+  text-overflow: ellipsis;
+}
+.btn-green {
+  background-color: #51ebaa;
+  border-radius: 90px;
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+}
+.btn-danger {
+  background-color: #c82333;
+  border-radius: 90px;
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+}
+.green-shadow {
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 25%) !important;
+}
+[ng-reflect-router-link]:focus {
+  outline: none !important;
+}
+
+.sidebar-main .nav-item {
+  margin: 5px 25px !important;
+}
+
+.sidebar-xs .sidebar-main .nav-item {
+  margin: 5px 5px !important;
+}
+.pointer {
+  cursor: pointer;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
